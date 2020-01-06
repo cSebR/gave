@@ -1,0 +1,163 @@
+
+type Book {
+  id: ID! @id
+x  createdAt: DateTime! @createdAt
+  cover: String!
+  title: String!
+  authorId: Int!
+  formatId: formatId!
+  publishedDate: DateTime!
+  numberOfCopies: Int!
+  priceHT: Float!
+  priceTTC: Float!
+  discountPrice: Float! // manage percentage
+  description: String!
+  numberOfPages: Int!
+  editorId: Int!
+  ranking: Float!
+  ISBN10: String!
+  ISBN13: String!
+  ASIN: String!
+  dimention: String!
+  weight: Float!
+  isAvailable: Boolean! @default(value: true)
+}
+
+type Command {
+  id: ID! @id
+x  createdAt: DateTime! @createdAt
+x  updatedAt: DateTime! @updatedAt
+  customerId: Int!
+  billingAddressId: Int!
+  shippingAddressId: Int!
+  orderDate: DateTime!
+  shipDate: DateTime!
+  transactionStatus: TransactionStatus!
+  isPaid: Boolean! @default(value: false)
+  paymentDate: DateTime!
+  discountType: String! @default(value: null) // 'pourcentage' // price
+  discountAmountPercentage: Float!
+  discountAmountPrice: Float!
+  totalPriceHT: Float!
+  totalPriceTTC: Float!
+  deliveryInstruction: String
+}
+
+x type ComandLine {
+  id: ID! @id
+  commandId: Id!
+  book: bookId
+  number: Int
+}
+
+x type TransactionStatus {
+  id: ID! @id
+  label: String!
+}
+
+CHECKOUT
+IN_PROCESS
+IN_TRANSIT
+DELIVERED
+CANCEL
+
+type User {
+  id: ID! @id
+x  createdAt: DateTime! @createdAt
+x  updatedAt: DateTime! @updatedAt
+  firstname: String
+  lastname: String
+  email: String
+  phone: String
+  password: String
+  billingAddressId: Id
+  shippingAddressId: Id
+}
+
+x type Category_Book {
+  categoryId: Int
+  bookId: Int
+}
+
+X type Category {
+  id: ID! @id
+  label: String!
+}
+
+X type Theme_Book {
+  themeId: Int
+  bookId: Int
+}
+
+X type Theme {
+  id: ID! @id
+  label: String!
+}
+
+X type Author {
+  id: ID! @id
+  label: String!
+}
+
+X type Editor {
+  id: ID! @id
+  label: String!
+}
+
+X type Collection {
+  id: ID! @id
+  label: String!
+}
+
+X type Language {
+  id: ID! @id
+  label: String!
+}
+
+X type Format {
+  id: ID! @id
+  label: String!
+}
+
+X type Etat {
+  id: ID! @id
+  label: String!
+}
+
+type Address {
+  id: ID! @id
+  ligne1: String
+  ligne2: String
+  ligne3: String
+  postaleCode: String
+  city: String
+}
+
+type CreditCard {
+  id: ID! @id
+  number: String
+  name: String
+  exipirationMonth: Int
+  exipirationYear: Int
+  cvv: String
+}
+
+type Cart {
+x  customerId: ID! @id
+x  bookId: Id
+  number: Int
+}
+
+type Wish {
+x customerId: ID! @id
+x  bookId: Id
+  number: Int
+}
+
+type Commentary {
+x  bookId: Int
+  username: String 
+  rank: Int
+x  publishedDate: DateTime
+  message: String
+}

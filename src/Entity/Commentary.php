@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\CommentaryRepository")
+ */
+class Commentary
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $rank;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $publishedDate;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $message;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getRank(): ?int
+    {
+        return $this->rank;
+    }
+
+    public function setRank(int $rank): self
+    {
+        $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function getPublishedDate(): ?\DateTimeInterface
+    {
+        return $this->publishedDate;
+    }
+
+    public function setPublishedDate(\DateTimeInterface $publishedDate): self
+    {
+        $this->publishedDate = $publishedDate;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+}

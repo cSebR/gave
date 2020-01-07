@@ -85,6 +85,56 @@ class Command
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $billingAddressLigne1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $billingAddressLigne2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $billingAddressLigne3;
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
+    private $billingAddressPostalCode;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $billingAddressCity;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $shippingAddressLigne1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $shippingAddressLigne2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $shippingAddressLigne3;
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
+    private $shippingAddressPostalCode;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $shippingAddressCity;
  
     /**
      * @ORM\PrePersist
@@ -275,6 +325,126 @@ class Command
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getBillingAddressLigne1(): ?string
+    {
+        return $this->billingAddressLigne1;
+    }
+
+    public function setBillingAddressLigne1(string $billingAddressLigne1): self
+    {
+        $this->billingAddressLigne1 = $billingAddressLigne1;
+
+        return $this;
+    }
+
+    public function getBillingAddressLigne2(): ?string
+    {
+        return $this->billingAddressLigne2;
+    }
+
+    public function setBillingAddressLigne2(?string $billingAddressLigne2): self
+    {
+        $this->billingAddressLigne2 = $billingAddressLigne2;
+
+        return $this;
+    }
+
+    public function getBillingAddressLigne3(): ?string
+    {
+        return $this->billingAddressLigne3;
+    }
+
+    public function setBillingAddressLigne3(?string $billingAddressLigne3): self
+    {
+        $this->billingAddressLigne3 = $billingAddressLigne3;
+
+        return $this;
+    }
+
+    public function getBillingAddressPostalCode(): ?string
+    {
+        return $this->billingAddressPostalCode;
+    }
+
+    public function setBillingAddressPostalCode(string $billingAddressPostalCode): self
+    {
+        $this->billingAddressPostalCode = $billingAddressPostalCode;
+
+        return $this;
+    }
+
+    public function getBillingAddressCity(): ?string
+    {
+        return $this->billingAddressCity;
+    }
+
+    public function setBillingAddressCity(string $billingAddressCity): self
+    {
+        $this->billingAddressCity = $billingAddressCity;
+
+        return $this;
+    }
+
+    public function getShippingAddressLigne1(): ?string
+    {
+        return $this->shippingAddressLigne1;
+    }
+
+    public function setShippingAddressLigne1(string $shippingAddressLigne1): self
+    {
+        $this->shippingAddressLigne1 = $shippingAddressLigne1;
+
+        return $this;
+    }
+
+    public function getShippingAddressLigne2(): ?string
+    {
+        return $this->shippingAddressLigne2;
+    }
+
+    public function setShippingAddressLigne2(?string $shippingAddressLigne2): self
+    {
+        $this->shippingAddressLigne2 = $shippingAddressLigne2;
+
+        return $this;
+    }
+
+    public function getShippingAddressLigne3(): ?string
+    {
+        return $this->shippingAddressLigne3;
+    }
+
+    public function setShippingAddressLigne3(?string $shippingAddressLigne3): self
+    {
+        $this->shippingAddressLigne3 = $shippingAddressLigne3;
+
+        return $this;
+    }
+
+    public function getShippingAddressPostalCode(): ?string
+    {
+        return $this->shippingAddressPostalCode;
+    }
+
+    public function setShippingAddressPostalCode(string $shippingAddressPostalCode): self
+    {
+        $this->shippingAddressPostalCode = $shippingAddressPostalCode;
+
+        return $this;
+    }
+
+    public function getShippingAddressCity(): ?string
+    {
+        return $this->shippingAddressCity;
+    }
+
+    public function setShippingAddressCity(string $shippingAddressCity): self
+    {
+        $this->shippingAddressCity = $shippingAddressCity;
 
         return $this;
     }

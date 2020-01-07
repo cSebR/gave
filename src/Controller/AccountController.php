@@ -21,4 +21,15 @@ class AccountController extends AbstractController{
 
 	}
 
+	/**
+	 * @Route("/account/edit", name="edit_account")
+	 */
+	public function editAccount(){
+
+		//role = '';
+		return $this->render( 'account/editAccount.html.twig' );
+
+
+	}
+
 }

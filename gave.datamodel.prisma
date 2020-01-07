@@ -1,7 +1,7 @@
 
-type Book {
+x type Book {
   id: ID! @id
-x  createdAt: DateTime! @createdAt
+  createdAt: DateTime! @createdAt
   cover: String!
   title: String!
   authorId: Int!
@@ -23,10 +23,10 @@ x  createdAt: DateTime! @createdAt
   isAvailable: Boolean! @default(value: true)
 }
 
-type Command {
+x type Command {
   id: ID! @id
-x  createdAt: DateTime! @createdAt
-x  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   customerId: Int!
   billingAddressId: Int!
   shippingAddressId: Int!
@@ -61,10 +61,10 @@ IN_TRANSIT
 DELIVERED
 CANCEL
 
-type User {
+x type User {
   id: ID! @id
-x  createdAt: DateTime! @createdAt
-x  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   firstname: String
   lastname: String
   email: String
@@ -124,7 +124,7 @@ X type Etat {
   label: String!
 }
 
-type Address {
+x type Address {
   id: ID! @id
   ligne1: String
   ligne2: String
@@ -133,7 +133,7 @@ type Address {
   city: String
 }
 
-type CreditCard {
+x type CreditCard {
   id: ID! @id
   number: String
   name: String
@@ -142,22 +142,22 @@ type CreditCard {
   cvv: String
 }
 
-type Cart {
-x  customerId: ID! @id
-x  bookId: Id
+X type Cart {
+  customerId: ID! @id
+  bookId: Id
   number: Int
 }
 
-type Wish {
-x customerId: ID! @id
-x  bookId: Id
+X type Wish {
+  customerId: ID! @id
+  bookId: Id
   number: Int
 }
 
-type Commentary {
-x  bookId: Int
+X type Commentary {
+  bookId: Int
   username: String 
   rank: Int
-x  publishedDate: DateTime
+  publishedDate: DateTime
   message: String
 }

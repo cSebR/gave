@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommandRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Command
 {
@@ -89,6 +90,19 @@ class Command
      * @ORM\OneToMany(targetEntity="App\Entity\CommandLine", mappedBy="command")
      */
     private $commandLines;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+ 
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function __construct()
     {
@@ -283,6 +297,18 @@ class Command
                 $commandLine->setCommand(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

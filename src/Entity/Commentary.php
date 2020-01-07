@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentaryRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commentary
 {
@@ -30,11 +31,25 @@ class Commentary
      * @ORM\Column(type="datetime")
      */
     private $publishedDate;
+ 
+    /**
+     * @ORM\PrePersist
+     */
+    public function setPublishedDateValue()
+    {
+        $this->publishedDate = new \DateTime();
+    }
 
     /**
      * @ORM\Column(type="text")
      */
     private $message;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="commentaries")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $book;
 
     public function getId(): ?int
     {
@@ -85,6 +100,18 @@ class Commentary
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->book;
+    }
+
+    public function setBook(?Book $book): self
+    {
+        $this->book = $book;
 
         return $this;
     }

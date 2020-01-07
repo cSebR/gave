@@ -111,6 +111,14 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
     }
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function setRolesValue()
+    {
+        $this->roles[] = 'ROLE_USER';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

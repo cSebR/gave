@@ -26,7 +26,7 @@
                     <div class="single-banner">
                         {#<img src="{{ asset('img/banner-1.jpg') }}" alt="">#}
                         <div class="inner-text">
-                            <h4>Mon Compte</h4>
+                            <h4><a href="{{ path('edit_account') }}">Mon Compte</a></h4>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="single-banner">
                         {#<img src="{{ asset('img/banner-2.jpg') }}" alt="">#}
                         <div class="inner-text">
-                            <h4>Droits Accès</h4>
+                            <h4><a href="#">Droits Accès</a></h4>
                         </div>
                     </div>
                 </div>
@@ -42,37 +42,7 @@
                     <div class="single-banner">
                         {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
                         <div class="inner-text">
-                            <h4>Tableau de bord</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="banner-section spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="single-banner">
-                        {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                        <div class="inner-text">
-                            <h4>Gestion Produit</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-banner">
-                        {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                        <div class="inner-text">
-                            <h4>Gestion Commande</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-banner">
-                        {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                        <div class="inner-text">
-                            <h4>Gestion Client</h4>
+                            <h4><a href="#">Tableau de bord</a></h4>
                         </div>
                     </div>
                 </div>
@@ -86,7 +56,7 @@
                     <div class="single-banner">
                         {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
                         <div class="inner-text">
-                            <h4>FAQ</h4>
+                            <h4><a href="{{ path('list_product') }}">Gestion Produit</a></h4>
                         </div>
                     </div>
                 </div>
@@ -94,7 +64,37 @@
                     <div class="single-banner">
                         {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
                         <div class="inner-text">
-                            <h4>Assitance</h4>
+                            <h4><a href="#">Gestion Commande</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
+                        <div class="inner-text">
+                            <h4><a href="#">Gestion Client</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
+                        <div class="inner-text">
+                            <h4><a href="#">FAQ</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
+                        <div class="inner-text">
+                            <h4><a href="#">Assitance</a></h4>
                         </div>
                     </div>
                 </div>

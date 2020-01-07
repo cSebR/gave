@@ -18,11 +18,6 @@ class Commentary
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $username;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $rank;
@@ -51,21 +46,15 @@ class Commentary
      */
     private $book;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="commentary", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
     }
 
     public function getRank(): ?int
@@ -112,6 +101,18 @@ class Commentary
     public function setBook(?Book $book): self
     {
         $this->book = $book;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

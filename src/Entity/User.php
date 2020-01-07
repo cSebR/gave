@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -32,6 +35,79 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lastname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Command", mappedBy="user")
+     */
+    private $commands;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Address", mappedBy="user")
+     */
+    private $billingAddress;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Address", mappedBy="user")
+     */
+    private $shippingAddress;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CreditCard", mappedBy="user")
+     */
+    private $creditCard;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Cart", mappedBy="user")
+     */
+    private $carts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Wish", mappedBy="user")
+     */
+    private $wishes;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Commentary", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $commentary;
+
+    public function __construct()
+    {
+        $this->commands = new ArrayCollection();
+        $this->billingAddress = new ArrayCollection();
+        $this->shippingAddress = new ArrayCollection();
+        $this->creditCard = new ArrayCollection();
+        $this->carts = new ArrayCollection();
+        $this->wishes = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -109,5 +185,256 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->contains($command)) {
+            $this->commands->removeElement($command);
+            // set the owning side to null (unless already changed)
+            if ($command->getUser() === $this) {
+                $command->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Address[]
+     */
+    public function getBillingAddress(): Collection
+    {
+        return $this->billingAddress;
+    }
+
+    public function addBillingAddress(Address $billingAddress): self
+    {
+        if (!$this->billingAddress->contains($billingAddress)) {
+            $this->billingAddress[] = $billingAddress;
+            $billingAddress->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBillingAddress(Address $billingAddress): self
+    {
+        if ($this->billingAddress->contains($billingAddress)) {
+            $this->billingAddress->removeElement($billingAddress);
+            // set the owning side to null (unless already changed)
+            if ($billingAddress->getUser() === $this) {
+                $billingAddress->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Address[]
+     */
+    public function getShippingAddress(): Collection
+    {
+        return $this->shippingAddress;
+    }
+
+    public function addShippingAddress(Address $shippingAddress): self
+    {
+        if (!$this->shippingAddress->contains($shippingAddress)) {
+            $this->shippingAddress[] = $shippingAddress;
+            $shippingAddress->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShippingAddress(Address $shippingAddress): self
+    {
+        if ($this->shippingAddress->contains($shippingAddress)) {
+            $this->shippingAddress->removeElement($shippingAddress);
+            // set the owning side to null (unless already changed)
+            if ($shippingAddress->getUser() === $this) {
+                $shippingAddress->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CreditCard[]
+     */
+    public function getCreditCard(): Collection
+    {
+        return $this->creditCard;
+    }
+
+    public function addCreditCard(CreditCard $creditCard): self
+    {
+        if (!$this->creditCard->contains($creditCard)) {
+            $this->creditCard[] = $creditCard;
+            $creditCard->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreditCard(CreditCard $creditCard): self
+    {
+        if ($this->creditCard->contains($creditCard)) {
+            $this->creditCard->removeElement($creditCard);
+            // set the owning side to null (unless already changed)
+            if ($creditCard->getUser() === $this) {
+                $creditCard->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cart[]
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): self
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts[] = $cart;
+            $cart->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): self
+    {
+        if ($this->carts->contains($cart)) {
+            $this->carts->removeElement($cart);
+            // set the owning side to null (unless already changed)
+            if ($cart->getUser() === $this) {
+                $cart->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Wish[]
+     */
+    public function getWishes(): Collection
+    {
+        return $this->wishes;
+    }
+
+    public function addWish(Wish $wish): self
+    {
+        if (!$this->wishes->contains($wish)) {
+            $this->wishes[] = $wish;
+            $wish->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWish(Wish $wish): self
+    {
+        if ($this->wishes->contains($wish)) {
+            $this->wishes->removeElement($wish);
+            // set the owning side to null (unless already changed)
+            if ($wish->getUser() === $this) {
+                $wish->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCommentary(): ?Commentary
+    {
+        return $this->commentary;
+    }
+
+    public function setCommentary(Commentary $commentary): self
+    {
+        $this->commentary = $commentary;
+
+        // set the owning side of the relation if necessary
+        if ($commentary->getUser() !== $this) {
+            $commentary->setUser($this);
+        }
+
+        return $this;
     }
 }

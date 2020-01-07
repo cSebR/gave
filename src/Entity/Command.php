@@ -52,33 +52,17 @@ class Command
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $totalPriceHt;
+    private $totalPriceHT;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $toatlPriceTTC;
+    private $totalPriceTTC;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $deliveryInstrucation;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="command", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
-     */
-    private $billingAddress;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
-     */
-    private $shippingAddress;
+    private $deliveryInstruction;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\TransactionStatus", inversedBy="command", cascade={"persist", "remove"})
@@ -95,6 +79,12 @@ class Command
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
  
     /**
      * @ORM\PrePersist
@@ -186,74 +176,38 @@ class Command
         return $this;
     }
 
-    public function getTotalPriceHt(): ?float
+    public function getTotalPriceHT(): ?float
     {
-        return $this->totalPriceHt;
+        return $this->totalPriceHT;
     }
 
-    public function setTotalPriceHt(?float $totalPriceHt): self
+    public function setTotalPriceHT(?float $totalPriceHT): self
     {
-        $this->totalPriceHt = $totalPriceHt;
+        $this->totalPriceHT = $totalPriceHT;
 
         return $this;
     }
 
-    public function getToatlPriceTTC(): ?float
+    public function getTotalPriceTTC(): ?float
     {
-        return $this->toatlPriceTTC;
+        return $this->totalPriceTTC;
     }
 
-    public function setToatlPriceTTC(?float $toatlPriceTTC): self
+    public function setTotalPriceTTC(?float $totalPriceTTC): self
     {
-        $this->toatlPriceTTC = $toatlPriceTTC;
+        $this->totalPriceTTC = $totalPriceTTC;
 
         return $this;
     }
 
-    public function getDeliveryInstrucation(): ?string
+    public function getDeliveryInstruction(): ?string
     {
-        return $this->deliveryInstrucation;
+        return $this->deliveryInstruction;
     }
 
-    public function setDeliveryInstrucation(?string $deliveryInstrucation): self
+    public function setDeliveryInstruction(?string $deliveryInstruction): self
     {
-        $this->deliveryInstrucation = $deliveryInstrucation;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getBillingAddress(): ?Address
-    {
-        return $this->billingAddress;
-    }
-
-    public function setBillingAddress(?Address $billingAddress): self
-    {
-        $this->billingAddress = $billingAddress;
-
-        return $this;
-    }
-
-    public function getShippingAddress(): ?Address
-    {
-        return $this->shippingAddress;
-    }
-
-    public function setShippingAddress(?Address $shippingAddress): self
-    {
-        $this->shippingAddress = $shippingAddress;
+        $this->deliveryInstruction = $deliveryInstruction;
 
         return $this;
     }
@@ -309,6 +263,18 @@ class Command
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

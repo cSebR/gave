@@ -30,6 +30,8 @@
 
     </head>
     <body>
+    {{ dump(dataserve.getBooks)}}
+
         <div class="container">
             <div class="inner-header">
                 <div class="row">
@@ -61,7 +63,7 @@
                             <div class="custom-select category-btn" style="width: 200px;">
                                 <select>
                                     <option value="0">Catégorie</option>
-                                    {% for categorie in categories.getCategories %}
+                                    {% for categorie in dataserve.getCategories %}
                                         <option value="{{ categorie.id }}">{{ categorie.label }}</option>
                                     {% endfor %}
                                 </select>

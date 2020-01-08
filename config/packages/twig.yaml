@@ -1,4 +1,4 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
-        categories: '@App\Service\CategoryService'
+        dataserve: '@App\Service\AppService'

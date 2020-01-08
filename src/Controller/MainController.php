@@ -14,12 +14,7 @@ class MainController extends AbstractController {
 	/**
 	 * @Route("/", name="main")
 	 */
-	/*public function index(CategoryRepository $category_repository): Response
-	{
-	   return $this->render('main/index.html.twig',['categories' => $category_repository->findAll(),]);
-	}*/
-	public function index()
-	{
-		return $this->render('main/index.html.twig');
+	public function index() {
+		return $this->render( 'main/index.html.twig' );
 	}
 }

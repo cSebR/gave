@@ -61,7 +61,7 @@
                             <div class="custom-select category-btn" style="width: 200px;">
                                 <select>
                                     <option value="0">Catégorie</option>
-                                    {% for categorie in categories %}
+                                    {% for categorie in categories.getCategories %}
                                         <option value="{{ categorie.id }}">{{ categorie.label }}</option>
                                     {% endfor %}
                                 </select>

@@ -21,22 +21,21 @@
     <!-- Breadcrumb Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
-            <form action="#" class="checkout-form">
+            <div class="checkout-form">
                 <div class="row">
                     <div class="col-lg-12">
                         <h2>Edit Livre</h2>
                         <br/>
                         <div class="col-lg-6">
-                            {{ include('book/_form.html.twig') }}
+                            {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
                         </div>
                         <div class="order-btn">
-                            <button class="site-btn place-btn">{{ button_label|default('Update') }}</button>
                             <button class="site-btn place-btn"><a href="{{ path('book_index') }}">back to list</a></button>
                         </div>
                         {{ include('book/_delete_form.html.twig') }}
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </section>
 

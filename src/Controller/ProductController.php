@@ -20,8 +20,15 @@ class ProductController extends AbstractController{
 	/**
 	 * @Route("/shop/list/product", name="list_product")
 	 */
-	public function listProduct(){
-		return $this->render('product/listProduct.html.twig');
+	public function listProduct() {
+		return $this->render( 'product/listProduct.html.twig' );
+	}
+
+	/**
+	 * @Route("/edit/product", name="edit_product")
+	 */
+	public function editProduct(){
+		return $this->render('product/editProduct.html.twig');
 	}
 
 }

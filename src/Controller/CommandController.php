@@ -17,5 +17,11 @@ class CommandController extends AbstractController{
 		return $this->render('command/resumeCommand.html.twig');
 	}
 
+	/**
+	 * @Route("/list/command", name="list_command")
+	 */
+	public function listCommand(){
+		return $this->render('command/listCommand.html.twig');
+	}
 
 }

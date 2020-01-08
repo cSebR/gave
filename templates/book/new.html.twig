@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Book{% endblock %}
+
+{% block body %}
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="{{ path('main') }}"><i class="fa fa-home"></i> Home</a>
+                        <a href="{{ path('book_index') }}">Livre</a>
+                        <span>Ajouter livre</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <section class="checkout-section spad">
+        <div class="container">
+            <form action="#" class="checkout-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Créer un Livre</h2>
+                        <br/>
+                        <div class="col-lg-6">
+                            {{ include('book/_form.html.twig') }}
+                        </div>
+                        <div class="order-btn">
+                            <button class="site-btn place-btn">{{ button_label|default('Save') }}</button>
+                            <button class="site-btn place-btn"><a href="{{ path('book_index') }}">back to list</a></button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</section>
+
+
+
+{% endblock %}

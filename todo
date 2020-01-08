@@ -1,5 +1,6 @@
 x faire le form register avec route
 x encodage mot de passe
 x ajouter element pour registration
-- surcharger login et register avec le sytle de page du template
-- gerer la validation apge login
+x surcharger login et register avec le sytle de page du template
+- gerer la validation page login
+- gerer la validation page register

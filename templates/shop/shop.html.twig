@@ -195,6 +195,72 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            {% for book in dataserve.getBooks %}
+
+                                {% for author in book.authorId %}
+                                    {{ dump(author) }}
+                                {% endfor %}
+
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="pi-pic">
+                                            <img src="{{ book.cover }}" alt="">
+                                            <div class="sale pp-sale">Sale</div>
+                                            <div class="icon">
+                                                <i class="icon_heart_alt"></i>
+                                            </div>
+                                            <ul>
+                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                                <li class="quick-view"><a href="{{ path('product') }}">+ Quick View</a></li>
+                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="pi-text">
+                                            <div class="catagory-name">{{ book.authorId[0].label }}</div>
+                                            <a href="#">
+                                                <h5>{{ book.title }}</h5>
+                                            </a>
+                                            <div class="product-price">
+                                                ${{ book.priceTTC }}
+                                                {# <span>$35.00</span> #}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+{# 
+    -cover: "https://images.unsplash.com/photo-1496016943515-7d33598c11e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+    -backCover: null
+    -title: "Titre de mon super livre"
+    -publishedDate: DateTime @1579046400 {#274 ▶}
+    -numberOfCopies: 38658
+    -priceHT: 30.0
+    -priceTTC: 34.0
+    -discountAmount: null
+    -discountType: null
+    -description: null
+    -numberOfPages: 700
+    -ranking: null
+    -ISBN10: "57856785"
+    -ISBN13: "6786587567586"
+    -ASIN: "uiyTIUYTliu"
+    -dimention: null
+    -weight: null
+    -isAvailable: true
+    -authorId: Doctrine\ORM\PersistentCollection {#130 ▶}
+    -format: Proxies\__CG__\App\Entity\Format {#2112 ▶}
+    -publisher: Proxies\__CG__\App\Entity\Publisher {#4923 ▶}
+    -theme: Doctrine\ORM\PersistentCollection {#301 ▶}
+    -category: Proxies\__CG__\App\Entity\Category {#65 ▶}
+    -commentaries: Doctrine\ORM\PersistentCollection {#4976 ▶}
+    -createdAt: DateTime @1578441600 {#298 ▶} #}
+
+
+
+
                             <!--<div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">

@@ -16,4 +16,3 @@
 ###< symfony/phpunit-bridge ###
 
 .idea/
-.env

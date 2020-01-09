@@ -11,6 +11,8 @@ use App\Repository\PublisherRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,7 +30,9 @@ class BookType extends AbstractType
             ->add('priceTTC')
             //->add('discountAmount')
             //->add('discountType')
-            ->add('description')
+            ->add('description',TextareaType::class, [
+	            'attr' => ['class' => 'select'],
+            ])
             ->add('numberOfPages')
             //->add('ranking')
             ->add('ISBN10')
@@ -41,6 +45,7 @@ class BookType extends AbstractType
             //->add('authorId')
             ->add('format',EntityType::class,[
             	'class' => Format::class,
+	            'attr' => ['class' => 'select'],
 	            'query_builder' => function(FormatRepository $fr){
             	return $fr->createQueryBuilder('f');
 	            },
@@ -48,16 +53,19 @@ class BookType extends AbstractType
                 ])
             ->add('publisher',EntityType::class,[
 	            'class' => Publisher::class,
+	            'attr' => ['class' => 'select'],
+
 	            'query_builder' => function(PublisherRepository $pr){
-		            return $pr->createQueryBuilder('f');
+		            return $pr->createQueryBuilder('p');
 	            },
 	            'choice_label' => 'label'
                 ])
             //->add('theme')
             ->add('category',EntityType::class,[
 	            'class' => Category::class,
+	            'attr' => ['class' => 'select'],
 	            'query_builder' => function(CategoryRepository $pr){
-		            return $pr->createQueryBuilder('f');
+		            return $pr->createQueryBuilder('c');
 	            },
 	            'choice_label' => 'label'
             ])

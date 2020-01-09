@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200109091909 extends AbstractMigration
+final class Version20200109111730 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -36,7 +36,7 @@ final class Version20200109091909 extends AbstractMigration
         $this->addSql('CREATE TABLE transaction_status (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE publisher (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE language (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE commentary (id INT AUTO_INCREMENT NOT NULL, book_id INT NOT NULL, user_id INT NOT NULL, rank INT NOT NULL, published_date DATETIME NOT NULL, message LONGTEXT NOT NULL, INDEX IDX_1CAC12CA16A2B381 (book_id), INDEX IDX_1CAC12CAA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE commentary (id INT AUTO_INCREMENT NOT NULL, book_id INT NOT NULL, user_id INT NOT NULL, `rank` INT NOT NULL, published_date DATETIME NOT NULL, message LONGTEXT NOT NULL, INDEX IDX_1CAC12CA16A2B381 (book_id), INDEX IDX_1CAC12CAA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE command (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, transaction_status_id INT NOT NULL, order_date DATETIME DEFAULT NULL, ship_date DATETIME DEFAULT NULL, is_paid TINYINT(1) NOT NULL, payement_date DATETIME DEFAULT NULL, discount_type VARCHAR(255) DEFAULT NULL, discount_amout DOUBLE PRECISION NOT NULL, total_price_ht DOUBLE PRECISION DEFAULT NULL, total_price_ttc DOUBLE PRECISION DEFAULT NULL, delivery_instruction LONGTEXT DEFAULT NULL, created_at DATETIME NOT NULL, billing_address_ligne1 VARCHAR(255) NOT NULL, billing_address_ligne2 VARCHAR(255) DEFAULT NULL, billing_address_ligne3 VARCHAR(255) DEFAULT NULL, billing_address_postal_code VARCHAR(5) NOT NULL, billing_address_city VARCHAR(255) NOT NULL, shipping_address_ligne1 VARCHAR(255) NOT NULL, shipping_address_ligne2 VARCHAR(255) DEFAULT NULL, shipping_address_ligne3 VARCHAR(255) DEFAULT NULL, shipping_address_postal_code VARCHAR(5) NOT NULL, shipping_address_city VARCHAR(255) NOT NULL, INDEX IDX_8ECAEAD4A76ED395 (user_id), INDEX IDX_8ECAEAD428D09BFE (transaction_status_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE collection (id INT AUTO_INCREMENT NOT NULL, publisher_id INT NOT NULL, label VARCHAR(255) NOT NULL, INDEX IDX_FC4D653240C86FCE (publisher_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE etat (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

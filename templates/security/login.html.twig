@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<!-- Login Section Begin -->
+<div class="register-login-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="login-form">
+                    <h2>Login</h2>
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <form method="post">
+                        <div class="group-input">
+                            <label for="inputEmail">Adresse email *</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                        </div>
+                        <div class="group-input">
+                            <label for="inputPassword">Mot de passe *</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" required>
+                        </div>
+
+                        <div class="group-input gi-check">
+                            <div class="gi-more">
+                                <label for="save-pass">
+                                    Se souvenir de moi
+                                    <input type="checkbox" name="_remember_me" id="save-pass">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <a href="/forgot-password" class="forget-pass">Mot de passe oublié ?</a>
+                            </div>
+                        </div>
+                        
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <button type="submit" class="site-btn login-btn">Se connecter</button>
+
+                    </form>
+                    <div class="switch-login">
+                        <a href="{{ path('register') }}" class="or-login">Ou créer un nouveau compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login Form Section End -->
+
+{% endblock %}

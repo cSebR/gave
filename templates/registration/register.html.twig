@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="register-form">
+                        <h2>Register</h2>
+                            {# <div class="group-input">
+                                <label for="username">Username or email address *</label>
+                                <input type="text" id="username">
+                            </div>
+                            <div class="group-input">
+                                <label for="pass">Password *</label>
+                                <input type="text" id="pass">
+                            </div>
+                            <div class="group-input">
+                                <label for="con-pass">Confirm Password *</label>
+                                <input type="text" id="con-pass">
+                            </div> #}
+                    
+                        {{ form_start(registrationForm) }}
+
+                            <div class="row">
+                                <div class="group-input col-6">
+                                    {{ form_row(registrationForm.firstname, { 'label': 'Prénom' }) }}
+                                </div>
+                                <div class="group-input col-6">
+                                    {{ form_row(registrationForm.lastname, { 'label': 'Nom' }) }}
+                                </div>
+                            </div>
+                             <div class="group-input">
+                                {{ form_row(registrationForm.email, { 'label': 'Email' }) }}
+                            </div>
+                             <div class="group-input">
+                                {{ form_row(registrationForm.plainPassword, { 'label': 'Mot de passe' }) }}
+                            </div>
+                   
+                            <button type="submit" class="site-btn register-btn">S'enregistrer</button>
+                        {{ form_end(registrationForm) }}
+                                        
+                        <div class="switch-login">
+                            <a href="{{ path('login') }}" class="or-login">Ou se connecter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

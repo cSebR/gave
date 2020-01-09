@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ThemeRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
-class Theme
+class Tag
 {
     /**
      * @ORM\Id()
@@ -24,13 +24,13 @@ class Theme
     private $label;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="theme")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Book", inversedBy="tags")
      */
-    private $books;
+    private $book;
 
     public function __construct()
     {
-        $this->books = new ArrayCollection();
+        $this->book = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,16 +53,15 @@ class Theme
     /**
      * @return Collection|Book[]
      */
-    public function getBooks(): Collection
+    public function getBook(): Collection
     {
-        return $this->books;
+        return $this->book;
     }
 
     public function addBook(Book $book): self
     {
-        if (!$this->books->contains($book)) {
-            $this->books[] = $book;
-            $book->addTheme($this);
+        if (!$this->book->contains($book)) {
+            $this->book[] = $book;
         }
 
         return $this;
@@ -70,9 +69,8 @@ class Theme
 
     public function removeBook(Book $book): self
     {
-        if ($this->books->contains($book)) {
-            $this->books->removeElement($book);
-            $book->removeTheme($this);
+        if ($this->book->contains($book)) {
+            $this->book->removeElement($book);
         }
 
         return $this;

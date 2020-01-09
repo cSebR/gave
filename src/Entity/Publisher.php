@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,9 +24,20 @@ class Publisher
     private $label;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Book", mappedBy="publisher", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="publisher")
      */
-    private $book;
+    private $books;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Collection", mappedBy="publisher")
+     */
+    private $collections;
+
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+        $this->collections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -43,18 +56,63 @@ class Publisher
         return $this;
     }
 
-    public function getBook(): ?Book
+    /**
+     * @return Collection|Book[]
+     */
+    public function getBooks(): Collection
     {
-        return $this->book;
+        return $this->books;
     }
 
-    public function setBook(Book $book): self
+    public function addBook(Book $book): self
     {
-        $this->book = $book;
-
-        // set the owning side of the relation if necessary
-        if ($book->getPublisher() !== $this) {
+        if (!$this->books->contains($book)) {
+            $this->books[] = $book;
             $book->setPublisher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBook(Book $book): self
+    {
+        if ($this->books->contains($book)) {
+            $this->books->removeElement($book);
+            // set the owning side to null (unless already changed)
+            if ($book->getPublisher() === $this) {
+                $book->setPublisher(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Collection[]
+     */
+    public function getCollections(): Collection
+    {
+        return $this->collections;
+    }
+
+    public function addCollection(Collection $collection): self
+    {
+        if (!$this->collections->contains($collection)) {
+            $this->collections[] = $collection;
+            $collection->setPublisher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollection(Collection $collection): self
+    {
+        if ($this->collections->contains($collection)) {
+            $this->collections->removeElement($collection);
+            // set the owning side to null (unless already changed)
+            if ($collection->getPublisher() === $this) {
+                $collection->setPublisher(null);
+            }
         }
 
         return $this;

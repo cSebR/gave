@@ -6,3 +6,32 @@ x surcharger login et register avec le sytle de page du template
 - gerer la validation page register
 - corriger categories
 - corriger book foreign keys
+
+
+
+book
+    format OneToMany
+    publisher OneToMany
+command
+    transactionstatus OneToMany
+commentary
+    user ManyToOne
+publisher
+    book ManyToOne
+transactionstatus
+    command ManyToOne
+user
+    commentary OneToMany
+
+relation collection
+    book 
+
+relation etat
+    book
+
+relatin language
+    book
+
+creer tag avec relation manyToMany
+    
+supprimer theme

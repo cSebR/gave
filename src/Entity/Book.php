@@ -112,24 +112,7 @@ class Book
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="books")
      */
-    private $authorId;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Format", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $format;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Publisher", inversedBy="book", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $publisher;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Theme", inversedBy="books")
-     */
-    private $theme;
+    private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="book")
@@ -145,6 +128,41 @@ class Book
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Format", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $format;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Publisher", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $publisher;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Collection", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $collection;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Etat", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $etat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Language", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $language;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="book")
+     */
+    private $tags;
  
     /**
      * @ORM\PrePersist
@@ -156,9 +174,10 @@ class Book
 
     public function __construct()
     {
-        $this->authorId = new ArrayCollection();
+        $this->author = new ArrayCollection();
         $this->theme = new ArrayCollection();
         $this->commentaries = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -385,74 +404,24 @@ class Book
     /**
      * @return Collection|Author[]
      */
-    public function getAuthorId(): Collection
+    public function getAuthor(): Collection
     {
-        return $this->authorId;
+        return $this->author;
     }
 
-    public function addAuthorId(Author $authorId): self
+    public function addAuthor(Author $author): self
     {
-        if (!$this->authorId->contains($authorId)) {
-            $this->authorId[] = $authorId;
+        if (!$this->author->contains($author)) {
+            $this->author[] = $author;
         }
 
         return $this;
     }
 
-    public function removeAuthorId(Author $authorId): self
+    public function removeAuthor(Author $author): self
     {
-        if ($this->authorId->contains($authorId)) {
-            $this->authorId->removeElement($authorId);
-        }
-
-        return $this;
-    }
-
-    public function getFormat(): ?Format
-    {
-        return $this->format;
-    }
-
-    public function setFormat(Format $format): self
-    {
-        $this->format = $format;
-
-        return $this;
-    }
-
-    public function getPublisher(): ?Publisher
-    {
-        return $this->publisher;
-    }
-
-    public function setPublisher(Publisher $publisher): self
-    {
-        $this->publisher = $publisher;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Theme[]
-     */
-    public function getTheme(): Collection
-    {
-        return $this->theme;
-    }
-
-    public function addTheme(Theme $theme): self
-    {
-        if (!$this->theme->contains($theme)) {
-            $this->theme[] = $theme;
-        }
-
-        return $this;
-    }
-
-    public function removeTheme(Theme $theme): self
-    {
-        if ($this->theme->contains($theme)) {
-            $this->theme->removeElement($theme);
+        if ($this->author->contains($author)) {
+            $this->author->removeElement($author);
         }
 
         return $this;
@@ -509,6 +478,94 @@ class Book
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getFormat(): ?Format
+    {
+        return $this->format;
+    }
+
+    public function setFormat(?Format $format): self
+    {
+        $this->format = $format;
+
+        return $this;
+    }
+
+    public function getPublisher(): ?Publisher
+    {
+        return $this->publisher;
+    }
+
+    public function setPublisher(?Publisher $publisher): self
+    {
+        $this->publisher = $publisher;
+
+        return $this;
+    }
+
+    public function getCollection(): ?Collection
+    {
+        return $this->collection;
+    }
+
+    public function setCollection(?Collection $collection): self
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    public function getEtat(): ?Etat
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?Etat $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?Language $language): self
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            $tag->removeBook($this);
+        }
 
         return $this;
     }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,9 +24,14 @@ class TransactionStatus
     private $label;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Command", mappedBy="transactionStatus", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Command", mappedBy="transactionStatus")
      */
-    private $command;
+    private $commands;
+
+    public function __construct()
+    {
+        $this->commands = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -43,18 +50,32 @@ class TransactionStatus
         return $this;
     }
 
-    public function getCommand(): ?Command
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
     {
-        return $this->command;
+        return $this->commands;
     }
 
-    public function setCommand(Command $command): self
+    public function addCommand(Command $command): self
     {
-        $this->command = $command;
-
-        // set the owning side of the relation if necessary
-        if ($command->getTransactionStatus() !== $this) {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
             $command->setTransactionStatus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->contains($command)) {
+            $this->commands->removeElement($command);
+            // set the owning side to null (unless already changed)
+            if ($command->getTransactionStatus() === $this) {
+                $command->setTransactionStatus(null);
+            }
         }
 
         return $this;

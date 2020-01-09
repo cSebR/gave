@@ -47,7 +47,7 @@ class Commentary
     private $book;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="commentary", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commentaries")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -110,7 +110,7 @@ class Commentary
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 

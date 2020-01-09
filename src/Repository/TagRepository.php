@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Theme;
+use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Theme|null find($id, $lockMode = null, $lockVersion = null)
- * @method Theme|null findOneBy(array $criteria, array $orderBy = null)
- * @method Theme[]    findAll()
- * @method Theme[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tag[]    findAll()
+ * @method Tag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ThemeRepository extends ServiceEntityRepository
+class TagRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Theme::class);
+        parent::__construct($registry, Tag::class);
     }
 
     // /**
-    //  * @return Theme[] Returns an array of Theme objects
+    //  * @return Tag[] Returns an array of Tag objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ThemeRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Theme
+    public function findOneBySomeField($value): ?Tag
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

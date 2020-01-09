@@ -89,9 +89,9 @@ class User implements UserInterface
     private $wishes;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Commentary", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentary", mappedBy="user")
      */
-    private $commentary;
+    private $commentaries;
 
     public function __construct()
     {
@@ -101,6 +101,7 @@ class User implements UserInterface
         $this->creditCard = new ArrayCollection();
         $this->carts = new ArrayCollection();
         $this->wishes = new ArrayCollection();
+        $this->commentaries = new ArrayCollection();
     }
 
     /**
@@ -431,18 +432,32 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCommentary(): ?Commentary
+    /**
+     * @return Collection|Commentary[]
+     */
+    public function getCommentaries(): Collection
     {
-        return $this->commentary;
+        return $this->commentaries;
     }
 
-    public function setCommentary(Commentary $commentary): self
+    public function addCommentary(Commentary $commentary): self
     {
-        $this->commentary = $commentary;
-
-        // set the owning side of the relation if necessary
-        if ($commentary->getUser() !== $this) {
+        if (!$this->commentaries->contains($commentary)) {
+            $this->commentaries[] = $commentary;
             $commentary->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentary(Commentary $commentary): self
+    {
+        if ($this->commentaries->contains($commentary)) {
+            $this->commentaries->removeElement($commentary);
+            // set the owning side to null (unless already changed)
+            if ($commentary->getUser() === $this) {
+                $commentary->setUser(null);
+            }
         }
 
         return $this;

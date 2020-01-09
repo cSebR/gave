@@ -65,12 +65,6 @@ class Command
     private $deliveryInstruction;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\TransactionStatus", inversedBy="command", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $transactionStatus;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\CommandLine", mappedBy="command")
      */
     private $commandLines;
@@ -135,6 +129,12 @@ class Command
      * @ORM\Column(type="string", length=255)
      */
     private $shippingAddressCity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TransactionStatus", inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $transactionStatus;
  
     /**
      * @ORM\PrePersist
@@ -258,18 +258,6 @@ class Command
     public function setDeliveryInstruction(?string $deliveryInstruction): self
     {
         $this->deliveryInstruction = $deliveryInstruction;
-
-        return $this;
-    }
-
-    public function getTransactionStatus(): ?TransactionStatus
-    {
-        return $this->transactionStatus;
-    }
-
-    public function setTransactionStatus(TransactionStatus $transactionStatus): self
-    {
-        $this->transactionStatus = $transactionStatus;
 
         return $this;
     }
@@ -445,6 +433,18 @@ class Command
     public function setShippingAddressCity(string $shippingAddressCity): self
     {
         $this->shippingAddressCity = $shippingAddressCity;
+
+        return $this;
+    }
+
+    public function getTransactionStatus(): ?TransactionStatus
+    {
+        return $this->transactionStatus;
+    }
+
+    public function setTransactionStatus(?TransactionStatus $transactionStatus): self
+    {
+        $this->transactionStatus = $transactionStatus;
 
         return $this;
     }

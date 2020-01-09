@@ -24,7 +24,7 @@ class Author
     private $label;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="authorId")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="author")
      */
     private $books;
 
@@ -62,7 +62,7 @@ class Author
     {
         if (!$this->books->contains($book)) {
             $this->books[] = $book;
-            $book->addAuthorId($this);
+            $book->addAuthor($this);
         }
 
         return $this;
@@ -72,7 +72,7 @@ class Author
     {
         if ($this->books->contains($book)) {
             $this->books->removeElement($book);
-            $book->removeAuthorId($this);
+            $book->removeAuthor($this);
         }
 
         return $this;

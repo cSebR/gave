@@ -199,7 +199,7 @@
 
                             {% for book in dataserve.getBooks %}
 
-                                {% for author in book.authorId %}
+                                {% for author in book.author %}
                                     {{ dump(author) }}
                                 {% endfor %}
 
@@ -218,7 +218,7 @@
                                             </ul>
                                         </div>
                                         <div class="pi-text">
-                                            <div class="catagory-name">{{ book.authorId[0].label }}</div>
+                                            <div class="catagory-name">{{ book.author[0].label }}</div>
                                             <a href="#">
                                                 <h5>{{ book.title }}</h5>
                                             </a>
@@ -250,7 +250,7 @@
     -dimention: null
     -weight: null
     -isAvailable: true
-    -authorId: Doctrine\ORM\PersistentCollection {#130 ▶}
+    -author: Doctrine\ORM\PersistentCollection {#130 ▶}
     -format: Proxies\__CG__\App\Entity\Format {#2112 ▶}
     -publisher: Proxies\__CG__\App\Entity\Publisher {#4923 ▶}
     -theme: Doctrine\ORM\PersistentCollection {#301 ▶}

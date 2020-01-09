@@ -134,7 +134,7 @@
                             </li>
                             <!-- Login -->
                             <li class="heart-icon">
-                                <a href="{{ path('login') }}">
+                                <a href="{{ path(app.user ? 'account' : 'login') }}">
                                     <i class="fa fa-user"></i>
                                 </a>
                             </li>

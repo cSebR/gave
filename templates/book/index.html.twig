@@ -19,30 +19,30 @@
     </div>
     <!-- Breadcrumb Section Begin -->
 
-<section class="checkout-section spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                 <h2>Liste des Livres</h2>
+    <section class="checkout-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Liste des Livres</h2>
                     <div class="toolbar">
                         <a href="{{ path('book_new') }}"><input type="button" class="btn btn-success btn-xs" value="Ajouter Livre" /></a>
                     </div>
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>PublishedDate</th>
-                                <th>NumberOfCopies</th>
-                                <th>PriceHT</th>
-                                <th>PriceTTC</th>
-                                <th>Description</th>
-                                <th>NumberOfPages</th>
-                                <th>ISBN13</th>
-                                <th>Dimention</th>
-                                <th>Weight</th>
-                                <th>actions</th>
-                            </tr>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>PublishedDate</th>
+                            <th>NumberOfCopies</th>
+                            <th>PriceHT</th>
+                            <th>PriceTTC</th>
+                            <th>Description</th>
+                            <th>NumberOfPages</th>
+                            <th>ISBN13</th>
+                            <th>Dimention</th>
+                            <th>Weight</th>
+                            <th>actions</th>
+                        </tr>
                         </thead>
                         <tbody>
                         {% for book in books %}
@@ -71,7 +71,7 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

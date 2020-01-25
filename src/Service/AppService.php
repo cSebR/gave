@@ -42,10 +42,13 @@ class AppService
        return $this->book_repository->findAll();
     }
 
-    public function getBooksByCategory()
-    {
-        return $this->book_repository->findBy(array('category' => 'Fantasy'),array('category' => 'ASC'));
-    }
+// /*     public function getBooksByCategory($category)
+//     {
+//         /* return $this->book_repository->findBy(array('title' => 'La Mythologie Viking')); */
+//         /* return $this->book_repository->findBy(['title' => 'La Mythologie Viking']); */
+//         /* return $this->book_repository->findBy(['category_id' => 2]); */
+//         /* return $this->book_repository->findBy(['category' => 2]); */
+//     } */
 
     public function getUsers()
     {

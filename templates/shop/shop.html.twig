@@ -4,6 +4,14 @@
 
 {% block body %}
 
+{# {{ dump(dataserve.getBooks) }}
+{{ dump(dataserve.getBooksByCategory) }} #}
+{# {{ dump(books) }}  #}
+
+{# {% for book in dataserve.getbooks %}
+        {{ dump(book.author[0].label) }}
+        {{ dump(book.category.id) }}
+{% endfor %} #}
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -212,7 +220,7 @@
                                                 <h5>{{ book.title }}</h5>
                                             </a>
                                             <div class="product-price">
-                                                ${{ book.priceTTC }}
+                                                {{ book.priceTTC }}€
                                                 {# <span>$35.00</span> #}
                                             </div>
                                         </div>

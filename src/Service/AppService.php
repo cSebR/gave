@@ -50,6 +50,11 @@ class AppService
 //         /* return $this->book_repository->findBy(['category' => 2]); */
 //     } */
 
+     /* public function getBookById($idfBook)
+     {
+         return $this->book_repository->findBy(['id' => $idfBook]);
+     } */
+
     public function getUsers()
     {
 	   return $this->user_repository->findAll();

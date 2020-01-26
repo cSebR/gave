@@ -6,7 +6,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use App\Repository\CategoryRepository;
+use App\Repository\BookRepository;
+use Symfony\Component\HttpFoundation\Request;
+use App\Controller\ShopController;
 
 class ProductController extends AbstractController{
 
@@ -30,5 +33,4 @@ class ProductController extends AbstractController{
 	public function editProduct(){
 		return $this->render('product/editProduct.html.twig');
 	}
-
 }

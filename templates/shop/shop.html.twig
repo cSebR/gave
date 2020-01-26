@@ -4,10 +4,10 @@
 
 {% block body %}
 
- {{ dump(dataserve.getBooks) }}
+{#  {{ dump(dataserve.getBooks) }} #}
 
 {# {% for book in dataserve.getbooks %}
-        {{ dump(book.author[0].label) }}
+        {{{ dump(book.author[0].label) }}
         {{ dump(book.category.id) }}
 {% endfor %} #}
 
@@ -196,7 +196,7 @@
                             </div>
 
 
-                            {% for book in dataserve.getBooks %}
+                            {% for book in dataserve.getBooks() %}
 
                                 {% for author in book.author %}
                                     {# {{ dump(author) }} #}

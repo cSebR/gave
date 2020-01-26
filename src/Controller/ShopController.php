@@ -41,11 +41,9 @@ class ShopController extends AbstractController {
         // Categorie selectionnée
         $categorie = $bookRepository->findBy(['category' => $categ_id]);
 
-
         return $this->render('shop/shop.html.twig',[
             'categs' => $categories,
             'categ' => $categorie
-
         ]);
     }
 }

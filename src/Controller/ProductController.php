@@ -16,8 +16,18 @@ class ProductController extends AbstractController{
 	/**
 	 * @Route("/shop/product", name="product")
 	 */
-	public function index(){
-		return $this->render('product/product.html.twig');
+	public function index(Request $request, BookRepository $bookRepository){
+
+		//Recuperation de l'id du livre
+		$book_id = $request->get('id');
+		//die(var_dump($book_id));
+
+		//Recuperation des details du livre
+		$bookDetails = $bookRepository->findBy(['id' => $book_id]);
+
+		return $this->render('product/product.html.twig',array(
+			'book' => $bookDetails
+		));
 	}
 
 	/**

@@ -4,9 +4,6 @@
 
 {% block body %}
 
-{# {% for book in books %}
-    <li><a href="{{ path('shop/', { id: book.id }) }}" name="book"> {{ book.label }}</a></li>
-{% endfor %} #}
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -107,7 +104,7 @@
                     </div>-->
                 </div>
 
-                {% for book in dataserve.getBooks %}
+                {#{% for book in dataserve.getBooks %}#}
 
                 <div class="col-lg-9">
                     <div class="row">
@@ -131,11 +128,12 @@
                                 </div>
                             </div>
                         </div>
+                        {{ dump(book) }}
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
                                     <span>oranges</span>
-                                    <h3>{{ book.title }}</h3>
+                                    <h3>{#{{ book.title }}#}</h3>
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
                                 <div class="pd-rating">
@@ -338,7 +336,7 @@
                         </div>
                    </div>
                 </div>
-                {% endfor %}
+                {#{% endfor %}#}
             </div>
         </div>
     </section>

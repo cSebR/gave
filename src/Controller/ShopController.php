@@ -15,23 +15,10 @@ class ShopController extends AbstractController {
 	/**
 	 * @Route("/shop", name="shop")
 	 */
-/* 	public function index(){
-
-		return $this->render('shop/shop.html.twig');
-	} */
-
-/* 	public function getBooksByCategory(BookRepository $BookRepository, $category)
-    {
-        return $this->$BookRepository->findBy(['category' => $category]);
-	} */
-	
-/* 	public function getBooksByCategory(BookRepository $bookRepository){
-
-		return $this->render('shop/shop.html.twig',['books' => $bookRepository->findBy(['category' => 2])]);
-	} */
-
 	public function index(CategoryRepository $categoryRepository,BookRepository $bookRepository, Request $request){
 
+		//Tous les livres
+		$books = $bookRepository->findAll();
 
         // Toutes les categories
         $categories = $categoryRepository->findAll();
@@ -43,7 +30,8 @@ class ShopController extends AbstractController {
 
         return $this->render('shop/shop.html.twig',[
             'categs' => $categories,
-            'categ' => $categorie
+            'categ' => $categorie,
+	        'books' => $books
         ]);
     }
 }

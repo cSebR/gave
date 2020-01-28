@@ -4,6 +4,12 @@
 
 {% block body %}
 
+{#  {{ dump(dataserve.getBooks) }} #}
+
+{# {% for book in dataserve.getbooks %}
+        {{{ dump(book.author[0].label) }}
+        {{ dump(book.category.id) }}
+{% endfor %} #}
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -27,8 +33,11 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            {% for categorie in dataserve.getCategories %}
+                            {# {% for categorie in dataserve.getCategories %}
                                 <li><a href="{{ categorie.id }}">{{ categorie.label }}</a></li>
+                            {% endfor %} #}
+                            {% for categorie in categs %}
+                                <li><a href="{{ path('shop', { id: categorie.id }) }}" name="categ"> {{ categorie.label }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -106,6 +115,7 @@
                             </div>
                         </div>
                     </div>
+                    {% if categ is empty %}
                     <div class="product-list">
                         <div class="row">
                             <div class="col-lg-4 col-sm-6">
@@ -186,7 +196,7 @@
                             </div>
 
 
-                            {% for book in dataserve.getBooks %}
+                            {% for book in dataserve.getBooks() %}
 
                                 {% for author in book.author %}
                                     {# {{ dump(author) }} #}
@@ -212,13 +222,44 @@
                                                 <h5>{{ book.title }}</h5>
                                             </a>
                                             <div class="product-price">
-                                                ${{ book.priceTTC }}
+                                                {{ book.priceTTC }}€
                                                 {# <span>$35.00</span> #}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
+
+                            {% else %}
+                            {% for book in categ %}
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="{{ book.cover }}#}" alt="">
+                                        <div class="sale pp-sale">Sale</div>
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="{{ path('product') }}">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">{#{{ book.author.label }}#}</div>
+                                        <a href="#">
+                                            <h5>{{ book.title }}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            ${{ book.priceTTC }}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
 
 {# 
     -cover: "https://images.unsplash.com/photo-1496016943515-7d33598c11e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"

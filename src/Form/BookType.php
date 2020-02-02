@@ -51,7 +51,6 @@ class BookType extends AbstractType
             ->add('ASIN')
             ->add('dimention')
             ->add('weight')
-            //->add('isAvailable')
             //->add('createdAt')
             /*->add('author',EntityType::class,[
 	            'class' => Author::class,
@@ -86,14 +85,14 @@ class BookType extends AbstractType
 	            },
 	            'choice_label' => 'label'
             ])
-            /*->add('collection',EntityType::class,[
+            ->add('collection',EntityType::class,[
 	            'class' => Collection::class,
 	            'attr' => ['class' => 'select'],
 	            'query_builder' => function(CollectionRepository $pr){
 		            return $pr->createQueryBuilder('co');
 	            },
 	            'choice_label' => 'label'
-            ])*/
+            ])
             ->add('etat',EntityType::class,[
 	            'class' => Etat::class,
 	            'attr' => ['class' => 'select'],
@@ -109,7 +108,8 @@ class BookType extends AbstractType
 		            return $pr->createQueryBuilder('l');
 	            },
 	            'choice_label' => 'label'
-            ])
+			])
+            ->add('isAvailable')
 
             /*->add('tags',EntityType::class,[
 	            'class' => Tag::class,

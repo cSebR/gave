@@ -16,20 +16,20 @@ class AppService
     private $book_repository;
     private $user_repository;
     private $tag_repository;
-    private $Author_repository;
+    private $author_repository;
 
     public function __construct(
         CategoryRepository $category_repository,
         BookRepository $book_repository,
         UserRepository $user_repository,
         TagRepository $tag_repository,
-        AuthorRepository $Author_repository
+        AuthorRepository $author_repository
     ) {
         $this->category_repository = $category_repository;
         $this->book_repository = $book_repository;
         $this->user_repository = $user_repository;
         $this->tag_repository = $tag_repository;
-        $this->Author_repository = $Author_repository;
+        $this->author_repository = $author_repository;
     }
 
     public function getCategories()
@@ -67,6 +67,6 @@ class AppService
 
     public function getAuthors()
     {
-	   return $this->Author_repository->findAll();
+	   return $this->author_repository->findAll();
     }
 }

@@ -87,22 +87,24 @@
                 </div>
 
                 {#{% for book in dataserve.getBooks %}#}
+                
+                {% set selectedBook = book[0] %}
 
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="{{ book[0].cover }}" alt="">
+                                <img class="product-big-img" src="{{ selectedBook.cover }}" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
                             </div>
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="{{ book[0].cover }}"><img
-                                                src="{{ book[0].cover }}" alt=""></div>
-                                    <div class="pt" data-imgbigurl="{{ book[0].backCover }}"><img
-                                                src="{{ book[0].backCover }}" alt=""></div>
+                                    <div class="pt active" data-imgbigurl="{{ selectedBook.cover }}"><img
+                                                src="{{ selectedBook.cover }}" alt=""></div>
+                                    <div class="pt" data-imgbigurl="{{ selectedBook.backCover }}"><img
+                                                src="{{ selectedBook.backCover }}" alt=""></div>
                                 </div>
                             </div>
                         </div>
@@ -110,8 +112,8 @@
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <span>Auteur</span>
-                                    <h3>{{ book[0].title }}</h3>
+                                    <span>{{ selectedBook.author[0].label }}</span>
+                                    <h3>{{ selectedBook.title }}</h3>
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
                                 <div class="pd-rating">
@@ -123,8 +125,8 @@
                                     <span>(5)</span>
                                 </div>
                                 <div class="pd-desc">
-                                    <p>{{ book[0].description }}</p>
-                                    <h4>{{ book[0].priceTTC }}€</h4>
+                                    <p>{{ selectedBook.description }}</p>
+                                    <h4>{{ selectedBook.priceTTC }}€</h4>
                                 </div>
                                 <div class="quantity">
                                     <div class="pro-qty">
@@ -133,11 +135,11 @@
                                     <a href="#" class="primary-btn pd-cart">Ajouter Panier</a>
                                 </div>
                                 <ul class="pd-tags">
-                                    <li><span>CATEGORIE</span>: Science-Fiction{# {{ book[0].categorie }} #}</li>
+                                    <li><span>CATEGORIE</span>: Science-Fiction{# {{ selectedBook.categorie }} #}</li>
                                     <li><span>TAGS</span>: SF, Roman, Aventure, Comedie</li>
                                 </ul>
                                 {# <div class="pd-share">
-                                    {<div class="p-code">ISBN 13 : {{ book[0].isbn13 }}</div>
+                                    {<div class="p-code">ISBN 13 : {{ selectedBook.isbn13 }}</div>
                                     <div class="pd-social">
                                         <a href="#"><i class="ti-facebook"></i></a>
                                         <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -168,10 +170,10 @@
                                         <div class="row">
                                             <div class="col-lg-7">
                                                 <h5>Résumé</h5>
-                                                <p>{{ book[0].description }}</p>
+                                                <p>{{ selectedBook.description }}</p>
                                             </div>
                                             <div class="col-lg-5">
-                                                <img src="{{ book[0].cover }}" alt="">
+                                                <img src="{{ selectedBook.cover }}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -182,67 +184,67 @@
                                         <tr>
                                                 <td class="p-catagory">Date de Parution</td>
                                                 <td>
-                                                    <div class="p-code">{# {{ book[0].publishedDate }} #}</div>
+                                                    <div class="p-code">{# {{ selectedBook.publishedDate }} #}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">ISBN 13</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].isbn13 }}</div>
+                                                    <div class="p-code">{{ selectedBook.isbn13 }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">ISBN 10</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].isbn10 }}</div>
+                                                    <div class="p-code">{{ selectedBook.isbn10 }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Nombre de Pages</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].numberOfPages }}</div>
+                                                    <div class="p-code">{{ selectedBook.numberOfPages }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Dimentions</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].dimention }}</div>
+                                                    <div class="p-code">{{ selectedBook.dimention }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Poids</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].weight }}</div>
+                                                    <div class="p-code">{{ selectedBook.weight }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Format</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].format.label }}</div>
+                                                    <div class="p-code">{{ selectedBook.format.label }}</div>
                                                 </td>
                                             </tr>
                                              <tr>
                                                 <td class="p-catagory">Langue</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].language.label }}</div>
+                                                    <div class="p-code">{{ selectedBook.language.label }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Editeur</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].publisher.label }}</div>
+                                                    <div class="p-code">{{ selectedBook.publisher.label }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Collection</td>
                                                 <td>
-                                                    <div class="p-code">{# {{ book[0].collection.label }} #}</div>
+                                                    <div class="p-code">{# {{ selectedBook.collection.label }} #}</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Etat</td>
                                                 <td>
-                                                    <div class="p-code">{{ book[0].etat.label }}</div>
+                                                    <div class="p-code">{{ selectedBook.etat.label }}</div>
                                                 </td>
                                             </tr>
                                         </table>

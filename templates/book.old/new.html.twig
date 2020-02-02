@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Book{% endblock %}
+
+{% block body %}
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="{{ path('main') }}"><i class="fa fa-home"></i> Home</a>
+                        <a href="{{ path('book_index') }}">Livre</a>
+                        <span>Ajouter livre</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <section class="checkout-section spad">
+        <div class="container">
+            <div class="checkout-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Créer un Livre</h2>
+                        <br/>
+                        <div class="col-lg-6">
+                            {#{{ form_row(form.cover, { 'label': 'Couverture' }) }}
+                            {{ form_row(form.backCover, { 'label': 'Quatrième de couverture' }) }}
+                            {{ form_row(form.title, { 'label': 'Titre' }) }}
+                            {{ form_row(form.publishedDate, { 'label': 'PublishedDate'}) }}
+                            {{ form_row(form.numberOfCopies, { 'label': 'Nombre de copies' }) }}
+                            {{ form_row(form.priceHT, { 'label': 'Prix HT' }) }}
+                            {{ form_row(form.priceTTC, { 'label': 'Prix TTC' }) }}
+                            {{ form_row(form.description, { 'label': 'Description' }) }}
+                            {{ form_row(form.numberOfPages, { 'label': 'Nombre de pages' }) }}
+                            {{ form_row(form.ISBN10, { 'label': 'ISBN10' }) }}
+                            {{ form_row(form.ISBN13, { 'label': 'ISBN13' }) }}
+                            {{ form_row(form.ASIN, { 'label': 'ASIN' }) }}
+                            {{ form_row(form.dimention, { 'label': 'Dimension' }) }}
+                            {{ form_row(form.weight, { 'label': 'Poids' }) }}
+                            {{ form_row(form.format, { 'label': 'Format' }) }}
+                            {{ form_row(form.publisher, { 'label': 'Publié' }) }}
+                            {{ form_row(form.category, { 'label': 'Categorie' }) }}#}
+                            {{ include('book/_form.html.twig') }}
+                        </div>
+                        <div class="order-btn">
+                            {#{{ include('book/_form.html.twig', {'button_label': 'Save'}) }}#}
+                            <button class="site-btn place-btn"><a href="{{ path('book_index') }}">back to list</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

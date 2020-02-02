@@ -3,75 +3,69 @@
 {% block title %}Book index{% endblock %}
 
 {% block body %}
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text product-more">
-                        <a href="{{ path('main') }}"><i class="fa fa-home"></i> Home</a>
-                        <a href="{{ path('book_index') }}">Livre</a>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Section Begin -->
+    <h1>Book index</h1>
 
-    <section class="checkout-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Liste des Livres</h2>
-                    <div class="toolbar">
-                        <a href="{{ path('book_new') }}"><input type="button" class="btn btn-success btn-xs" value="Ajouter Livre" /></a>
-                    </div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Title</th>
-                            <th>PublishedDate</th>
-                            <th>NumberOfCopies</th>
-                            <th>PriceHT</th>
-                            <th>PriceTTC</th>
-                            <th>Description</th>
-                            <th>NumberOfPages</th>
-                            <th>ISBN13</th>
-                            <th>Dimention</th>
-                            <th>Weight</th>
-                            <th>actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for book in books %}
-                            <tr>
-                                <td>{{ book.id }}</td>
-                                <td>{{ book.title }}</td>
-                                <td>{{ book.publishedDate ? book.publishedDate|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ book.numberOfCopies }}</td>
-                                <td>{{ book.priceHT }}</td>
-                                <td>{{ book.priceTTC }}</td>
-                                <td>{{ book.description }}</td>
-                                <td>{{ book.numberOfPages }}</td>
-                                <td>{{ book.ISBN13 }}</td>
-                                <td>{{ book.dimention }}</td>
-                                <td>{{ book.weight }}</td>
-                                <td>
-                                    {#<a href="{{ path('book_show', {'id': book.id}) }}"><input type="button" class="btn btn-primary btn-xs" value="Show" /></a>#}
-                                    <a href="{{ path('book_edit', {'id': book.id}) }}"><input type="button" class="btn btn-warning btn-xs" value="Edit" /></a>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="21">no records found</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cover</th>
+                <th>BackCover</th>
+                <th>Title</th>
+                <th>PublishedDate</th>
+                <th>NumberOfCopies</th>
+                <th>PriceHT</th>
+                <th>PriceTTC</th>
+                <th>DiscountAmount</th>
+                <th>DiscountType</th>
+                <th>Description</th>
+                <th>NumberOfPages</th>
+                <th>Ranking</th>
+                <th>ISBN10</th>
+                <th>ISBN13</th>
+                <th>ASIN</th>
+                <th>Dimention</th>
+                <th>Weight</th>
+                <th>IsAvailable</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.cover }}</td>
+                <td>{{ book.backCover }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.publishedDate ? book.publishedDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ book.numberOfCopies }}</td>
+                <td>{{ book.priceHT }}</td>
+                <td>{{ book.priceTTC }}</td>
+                <td>{{ book.discountAmount }}</td>
+                <td>{{ book.discountType }}</td>
+                <td>{{ book.description }}</td>
+                <td>{{ book.numberOfPages }}</td>
+                <td>{{ book.ranking }}</td>
+                <td>{{ book.ISBN10 }}</td>
+                <td>{{ book.ISBN13 }}</td>
+                <td>{{ book.ASIN }}</td>
+                <td>{{ book.dimention }}</td>
+                <td>{{ book.weight }}</td>
+                <td>{{ book.isAvailable ? 'Yes' : 'No' }}</td>
+                <td>{{ book.createdAt ? book.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="21">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('book_new') }}">Create new</a>
 {% endblock %}

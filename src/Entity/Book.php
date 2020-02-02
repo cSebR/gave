@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+// use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -402,9 +403,9 @@ class Book
     }
 
     /**
-     * @return Collection|Author[]
+     * @return DoctrineCollection|Author[]
      */
-    public function getAuthor(): Collection
+    public function getAuthor(): DoctrineCollection
     {
         return $this->author;
     }
@@ -440,9 +441,9 @@ class Book
     }
 
     /**
-     * @return Collection|Commentary[]
+     * @return DoctrineCollection|Commentary[]
      */
-    public function getCommentaries(): Collection
+    public function getCommentaries(): DoctrineCollection
     {
         return $this->commentaries;
     }
@@ -543,9 +544,9 @@ class Book
     }
 
     /**
-     * @return Collection|Tag[]
+     * @return DoctrineCollection|Tag[]
      */
-    public function getTags(): Collection
+    public function getTags(): DoctrineCollection
     {
         return $this->tags;
     }

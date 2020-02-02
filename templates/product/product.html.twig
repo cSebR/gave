@@ -4,7 +4,7 @@
 
 {% block body %}
 
-
+{# {{ dump(book) }} #}
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
@@ -38,39 +38,21 @@
                         </ul>
                     </div>
                     <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
+                        <h4 class="fw-title">Tags</h4>
                         <div class="fw-brand-check">
+                            {% for tag in dataserve.getTags %}
                             <div class="bc-item">
-                                <label for="bc-calvin">
-
-                                    <input type="checkbox" id="bc-calvin">
+                                <label for="{{ tag.id }}">
+                                    {{ tag.label }}
+                                    <input type="checkbox" id="{{ tag.id }}">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <div class="bc-item">
-                                <label for="bc-diesel">
-
-                                    <input type="checkbox" id="bc-diesel">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-polo">
-
-                                    <input type="checkbox" id="bc-polo">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-tommy">
-
-                                    <input type="checkbox" id="bc-tommy">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="filter-widget">
+
+{#                     <div class="filter-widget">
                         <h4 class="fw-title">Price</h4>
                         <div class="filter-range-wrap">
                             <div class="range-slider">
@@ -87,7 +69,7 @@
                             </div>
                         </div>
                         <a href="#" class="filter-btn">Filter</a>
-                    </div>
+                    </div> #}
 
 
                     <!--<div class="filter-widget">
@@ -110,30 +92,26 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="{{ asset('img/product-single/product-1.jpg') }}" alt="">
+                                <img class="product-big-img" src="{{ book[0].cover }}" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
                             </div>
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="{{ asset('img/product-single/product-1.jpg') }}"><img
-                                                src="{{ asset('img/product-single/product-1.jpg') }}" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-2.jpg"><img
-                                                src="{{ asset('img/product-single/product-2.jpg') }}" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                                src="{{ asset('img/product-single/product-3.jpg') }}" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                                src="{{ asset('img/product-single/product-3.jpg') }}" alt=""></div>
+                                    <div class="pt active" data-imgbigurl="{{ book[0].cover }}"><img
+                                                src="{{ book[0].cover }}" alt=""></div>
+                                    <div class="pt" data-imgbigurl="{{ book[0].backCover }}"><img
+                                                src="{{ book[0].backCover }}" alt=""></div>
                                 </div>
                             </div>
                         </div>
-                        {{ dump(book) }}
+                        {# {{ dump(book) }} #}
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <span>oranges</span>
-                                    <h3>{#{{ book.title }}#}</h3>
+                                    <span>Auteur</span>
+                                    <h3>{{ book[0].title }}</h3>
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
                                 <div class="pd-rating">
@@ -145,28 +123,27 @@
                                     <span>(5)</span>
                                 </div>
                                 <div class="pd-desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
-                                        sit amet, consectetur adipisicing elit, sed do mod tempor</p>
-                                    <h4>$495.00 <span>629.99</span></h4>
+                                    <p>{{ book[0].description }}</p>
+                                    <h4>{{ book[0].priceTTC }}€</h4>
                                 </div>
                                 <div class="quantity">
                                     <div class="pro-qty">
                                         <input type="text" value="1">
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                    <a href="#" class="primary-btn pd-cart">Ajouter Panier</a>
                                 </div>
                                 <ul class="pd-tags">
-                                    <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
-                                    <li><span>TAGS</span>: Clothing, T-shirt, Woman</li>
+                                    <li><span>CATEGORIE</span>: Science-Fiction{# {{ book[0].categorie }} #}</li>
+                                    <li><span>TAGS</span>: SF, Roman, Aventure, Comedie</li>
                                 </ul>
-                                <div class="pd-share">
-                                    <div class="p-code">Sku : 00012</div>
+                                {# <div class="pd-share">
+                                    {<div class="p-code">ISBN 13 : {{ book[0].isbn13 }}</div>
                                     <div class="pd-social">
                                         <a href="#"><i class="ti-facebook"></i></a>
                                         <a href="#"><i class="ti-twitter-alt"></i></a>
                                         <a href="#"><i class="ti-linkedin"></i></a>
                                     </div>
-                                </div>
+                                </div> #}
                             </div>
                         </div>
                     </div>
@@ -180,7 +157,7 @@
                                     <a data-toggle="tab" href="#tab-2" role="tab">SPECIFICATIONS</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews (02)</a>
+                                    <a data-toggle="tab" href="#tab-3" role="tab">AVIS CLIENTS (02)</a>
                                 </li>
                             </ul>
                         </div>
@@ -190,19 +167,11 @@
                                     <div class="product-content">
                                         <div class="row">
                                             <div class="col-lg-7">
-                                                <h5>Introduction</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
-                                                <h5>Features</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
+                                                <h5>Résumé</h5>
+                                                <p>{{ book[0].description }}</p>
                                             </div>
                                             <div class="col-lg-5">
-                                                <img src="{{ asset('img/product-single/tab-desc.jpg') }}" alt="">
+                                                <img src="{{ book[0].cover }}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -210,57 +179,70 @@
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="specification-table">
                                         <table>
-                                            <tr>
-                                                <td class="p-catagory">Customer Rating</td>
+                                        <tr>
+                                                <td class="p-catagory">Date de Parution</td>
                                                 <td>
-                                                    <div class="pd-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <span>(5)</span>
-                                                    </div>
+                                                    <div class="p-code">{# {{ book[0].publishedDate }} #}</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Price</td>
+                                                <td class="p-catagory">ISBN 13</td>
                                                 <td>
-                                                    <div class="p-price">$495.00</div>
+                                                    <div class="p-code">{{ book[0].isbn13 }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Add To Cart</td>
+                                                <td class="p-catagory">ISBN 10</td>
                                                 <td>
-                                                    <div class="cart-add">+ add to cart</div>
+                                                    <div class="p-code">{{ book[0].isbn10 }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Availability</td>
+                                                <td class="p-catagory">Nombre de Pages</td>
                                                 <td>
-                                                    <div class="p-stock">22 in stock</div>
+                                                    <div class="p-code">{{ book[0].numberOfPages }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Weight</td>
+                                                <td class="p-catagory">Dimentions</td>
                                                 <td>
-                                                    <div class="p-weight">1,3kg</div>
+                                                    <div class="p-code">{{ book[0].dimention }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Size</td>
+                                                <td class="p-catagory">Poids</td>
                                                 <td>
-                                                    <div class="p-size">Xxl</div>
+                                                    <div class="p-code">{{ book[0].weight }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Color</td>
-                                                <td><span class="cs-color"></span></td>
+                                                <td class="p-catagory">Format</td>
+                                                <td>
+                                                    <div class="p-code">{{ book[0].format.label }}</div>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="p-catagory">Langue</td>
+                                                <td>
+                                                    <div class="p-code">{{ book[0].language.label }}</div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Sku</td>
+                                                <td class="p-catagory">Editeur</td>
                                                 <td>
-                                                    <div class="p-code">00012</div>
+                                                    <div class="p-code">{{ book[0].publisher.label }}</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-catagory">Collection</td>
+                                                <td>
+                                                    <div class="p-code">{# {{ book[0].collection.label }} #}</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-catagory">Etat</td>
+                                                <td>
+                                                    <div class="p-code">{{ book[0].etat.label }}</div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -268,7 +250,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
-                                        <h4>2 Comments</h4>
+                                        <h4>2 Commentaires</h4>
                                         <div class="comment-option">
                                             <div class="co-item">
                                                 <div class="avatar-pic">
@@ -314,7 +296,7 @@
                                             </div>
                                         </div>
                                         <div class="leave-comment">
-                                            <h4>Leave A Comment</h4>
+                                            <h4>Écrire un Commentaire</h4>
                                             <form action="#" class="comment-form">
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -336,7 +318,7 @@
                         </div>
                    </div>
                 </div>
-                {#{% endfor %}#}
+                {# {% endfor %} #}
             </div>
         </div>
     </section>

@@ -44,47 +44,58 @@
 <!-- Hero Section End -->
 
 <!-- Women Banner Section Begin -->
-<div class="banner-section spad">
+
+    <!-- Banner Section Begin -->
+    <div class="banner-section spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/banner-1.jpg" alt="">
+                        <img src="img/BanEducatif.jpg" alt="">
                         <div class="inner-text">
-                            <h4>Men’s</h4>
+                            <h4>Educatif</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/banner-2.jpg" alt="">
+                        <img src="img/BanFantastique.jpg" alt="">
                         <div class="inner-text">
-                            <h4>Women’s</h4>
+                            <h4>Fantastique</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/banner-3.jpg" alt="">
+                        <img src="img/BanComics.jpg" alt="">
                         <div class="inner-text">
-                            <h4>Kid’s</h4>
+                            <h4>Comics</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<section class="women-banner spad">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-1">
-                <div class="filter-control">
-                    <h4>Nouveautés</h4>
+    <!-- Banner Section End -->
+
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="img/products/bookLarge.jpg">
+                        <h2>Nouveautés</h2>
+                        <a href="#">Découvrir</a>
+                    </div>
                 </div>
-                {# {{ dump(books) }} #}
-                <div class="product-slider owl-carousel">
-                {% for book in books %}
-                    <div class="product-item">
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <h4>Nouveautés</h4>
+                    </div>
+                    
+                    <div class="product-slider owl-carousel">
+                    {% for book in books %}
+                        <div class="product-item">
                         <div class="pi-pic">
                             <img src="{{ book.cover }}" alt="">
                             <div class="icon">
@@ -107,20 +118,26 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
-                    <div class="product-item">
-                        
+                        {% endfor %}
+                        <div class="product-item"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
 
-
-                <div class="filter-control">
-                    <h4>Meilleurs Ventes</h4>
-                </div>
-                {# {{ dump(books) }} #}
-                <div class="product-slider owl-carousel">
-                {% for book in books %}
-                    <div class="product-item">
+    <!-- Man Banner Section Begin -->
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="filter-control">
+                        <h4>Meilleurs Ventes</h4>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        {% for book in books %}
+                        <div class="product-item">
                         <div class="pi-pic">
                             <img src="{{ book.cover }}" alt="">
                             <div class="icon">
@@ -143,15 +160,22 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
-                    <div class="product-item">
-                        
+                        {% endfor %}
+                        <div class="product-item"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="img/products/bookLarge2.jpg">
+                        <h2>Meilleurs Ventes</h2>
+                        <a href="#">Découvrir</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- Man Banner Section End -->
+
+ 
 <!-- Women Banner Section End -->
 
 {#<!-- Deal Of The Week Section Begin-->

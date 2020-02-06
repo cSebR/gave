@@ -161,7 +161,7 @@ class Book
     private $language;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="book")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"}, mappedBy="book")
      */
     private $tags;
  

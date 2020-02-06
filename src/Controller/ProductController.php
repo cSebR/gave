@@ -44,26 +44,5 @@ class ProductController extends AbstractController{
 		return $this->render('product/editProduct.html.twig');
 	}
 
-	/**
-     * @Route("/new", name="book_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $book = new Book();
-        $form = $this->createForm(BookType::class, $book);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($book);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('book_index');
-        }
-
-        return $this->render('book/new.html.twig', [
-            'book' => $book,
-            'form' => $form->createView(),
-        ]);
-    }
 }

@@ -19,7 +19,7 @@ class UserType extends AbstractType
             ->add('lastname')
             ->add('phone')
             //->add('createdAt')
-            ->add('commentary')
+            // ->add('commentary')  	
         ;
     }
 

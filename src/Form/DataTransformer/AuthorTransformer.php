@@ -3,7 +3,7 @@
 
 namespace App\Form\DataTransformer;
 
-
+use App\Entity\Author;
 use App\Entity\Tag;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,11 +11,12 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class TagTransformer implements DataTransformerInterface {
+class AuthorTransformer implements DataTransformerInterface {
+
 
 	private $manager;
 
-	public function __construct(EntityManagerInterface $manager)
+	public function __construct(ObjectManager $manager)
 	{
 		$this->manager = $manager;
 	}
@@ -28,16 +29,16 @@ class TagTransformer implements DataTransformerInterface {
 	public function reverseTransform($string): array
 	{
 		$labels = array_unique(array_filter(array_map('trim', explode(',', $string))));
-		$tags = $this->manager->getRepository(Tag::class)->findBy([
+		$authors = $this->manager->getRepository(Author::class)->findBy([
 			'label' => $labels
 		]);
 
-		$newLabels = array_diff($labels, $tags);
+		$newLabels = array_diff($labels, $authors);
 		foreach ($newLabels as $label) {
-			$tag = new Tag();
-			$tag->setLabel($label);
-			$tags[] = $tag;
+			$author = new Author();
+			$author->setLabel($label);
+			$authors[] = $author;
 		}
-		return $tags;
+		return $authors;
 	}
 }

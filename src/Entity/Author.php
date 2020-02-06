@@ -24,7 +24,7 @@ class Author
     private $label;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="author")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Book", inversedBy="author")
      */
     private $books;
 
@@ -77,4 +77,7 @@ class Author
 
         return $this;
     }
+	public function __toString(){
+		return $this->label;
+	}
 }

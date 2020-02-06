@@ -1,7 +1,9 @@
 <?php
 
+
 namespace App\Form;
 
+use App\Form\DataTransformer\AuthorTransformer;
 use App\Form\DataTransformer\TagTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
@@ -10,19 +12,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TagType extends AbstractType {
 
+class AuthorType extends AbstractType{
 
-    private $manager;
+	private $manager;
 
-    public function __construct(EntityManagerInterface $manager)
-    {
-	    $this->manager = $manager;
-    }
+	public function __construct(EntityManagerInterface $manager)
+	{
+		$this->manager = $manager;
+	}
 
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
 		$builder->addModelTransformer(new CollectionToArrayTransformer(),true);
-		$builder->addModelTransformer(new TagTransformer($this->manager),true);
+		$builder->addModelTransformer(new AuthorTransformer($this->manager),true);
 	}
 
 	public function configureOptions(OptionsResolver $resolver)
@@ -37,4 +39,5 @@ class TagType extends AbstractType {
 	public function getParent() {
 		return TextType::class;
 	}
+
 }

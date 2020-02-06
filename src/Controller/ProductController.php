@@ -20,7 +20,6 @@ class ProductController extends AbstractController{
 
 		//Recuperation de l'id du livre
 		$book_id = $request->get('id');
-		//die(var_dump($book_id));
 
 		//Recuperation des details du livre
 		$bookDetails = $bookRepository->findBy(['id' => $book_id]);

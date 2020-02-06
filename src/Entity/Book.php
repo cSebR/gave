@@ -111,7 +111,7 @@ class Book
     private $isAvailable;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="books")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Author", cascade={"persist"})
      */
     private $author;
 

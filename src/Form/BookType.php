@@ -31,14 +31,13 @@ class BookType extends AbstractType
             ->add('weight')
             ->add('isAvailable')
             // ->add('createdAt')
-            // ->add('author')
+            ->add('author',AuthorType::class)
             // ->add('category')
             // ->add('format')
             // ->add('publisher')
             // ->add('collection')
             // ->add('etat')
             // ->add('language')
-            // ->add('tags')
 	        ->add('tags',TagType::class)
         ;
     }

@@ -108,7 +108,9 @@
                                 </div>
                             </div>
                         </div>
-                        {# {{ dump(book) }} #}
+
+
+
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
@@ -135,7 +137,7 @@
                                     <a href="#" class="primary-btn pd-cart">Ajouter Panier</a>
                                 </div>
                                 <ul class="pd-tags">
-                                    <li><span>CATEGORIE</span>: Science-Fiction{# {{ selectedBook.categorie }} #}</li>
+                                    <li><span>CATEGORIE</span>: {# Science-Fiction #} {# {{ selectedBook.category[0].label }}#} </li>
                                     <li><span>TAGS</span>: SF, Roman, Aventure, Comedie</li>
                                 </ul>
                                 {# <div class="pd-share">

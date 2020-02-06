@@ -42,4 +42,6 @@ class ProductController extends AbstractController{
 	public function editProduct(){
 		return $this->render('product/editProduct.html.twig');
 	}
+
+
 }

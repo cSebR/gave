@@ -18,6 +18,11 @@ class CartController extends AbstractController {
 	 */
 	public function index(CartRepository $cartRepository, Security $security): Response	
     {
+        if (empty($security->getUser())) {
+            return $this->render('cart/cart.html.twig', [
+				'carts' => [],
+			]);
+		}
         return $this->render('cart/cart.html.twig', [
             'carts' => $cartRepository->findBy(['user' => $security->getUser()->getId()]),
         ]);

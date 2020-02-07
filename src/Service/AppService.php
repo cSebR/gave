@@ -86,11 +86,17 @@ class AppService
     
     public function getCart()
     {
+        if (empty($this->security->getUser())) {
+            return [];
+        }
 	   return $this->cart_repository->findBy(['user' => $this->security->getUser()->getId()]);
     }
     
     public function getWish()
     {
+        if (empty($this->security->getUser())) {
+            return [];
+        }
 	   return $this->wish_repository->findBy(['user' => $this->security->getUser()->getId()]);
     }
 }

@@ -43,165 +43,158 @@
     </div>
     <!-- Breadcrumb Section Begin -->
 
+<!-- Admin Section Begin -->
     {% if app.user.roles[0] ==  'ROLE_ADMIN' %}
         <div class="admin">
-            <!-- Banner Section Begin -->
-            <div class="banner-section spad">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-1.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('edit_account') }}">Mon Compte</a></h4>
-                                </div>
-                            </div>
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_MonCompte.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('edit_account') }}">Mon Compte</a></h4>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-2.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="#">Droits Accès</a></h4>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_DroitAcces.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="#">Droits Accès</a></h4>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="#">Tableau de bord</a></h4>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_TB.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="#">Tableau de bord</a></h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="banner-section spad">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('book_index') }}">Gestion Produit</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('list_command') }}">Gestion Commande</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('user_index') }}">Gestion Client</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="banner-section spad">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="#">FAQ</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="#">Assitance</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        {#<div class="col-lg-4">
-                            <div class="single-banner">
-                                <img src="{{ asset('img/banner-3.jpg') }}" alt="">
-                                <div class="inner-text">
-                                    <h4>Gestion Client</h4>
-                                </div>
-                            </div>
-                        </div>#}
-                    </div>
-                </div>
-            </div>
-            <!-- Banner Section End -->
         </div>
+    </div>
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_GestProduit.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('book_index') }}">Gestion Produit</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_GestCommande.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('list_command') }}">Gestion Commande</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_GestClient.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('user_index') }}">Gestion Client</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_FAQ.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="#">FAQ</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_Assistance.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="#">Assitance</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Admin Section End -->
+    
+<!-- Client Section Begin -->
     {% else %}
         <div class="client">
-            <!-- Banner Section Begin -->
-            <div class="banner-section spad">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-1.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('edit_account') }}">Mon Compte</a></h4>
-                                </div>
-                            </div>
+        <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_MonCompte.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('edit_account') }}">Mon Compte</a></h4>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-2.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('credit_card_index') }}">Mes Moyens de Paiment</a></h4>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_Card.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('credit_card_index') }}">Mes Moyens de Paiment</a></h4>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('address_index') }}">Mes Adresses</a></h4>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_Address.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('address_index') }}">Mes Adresses</a></h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="banner-section spad">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="{{ path('list_command') }}">Mes Commandes</a></h4>
-                                </div>
-                            </div>
+        </div>
+    </div>
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_GestCommande.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="{{ path('list_command') }}">Mes Commandes</a></h4>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="#">FAQ</a></h4>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_FAQ.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="#">FAQ</a></h4>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-3.jpg') }}" alt="">#}
-                                <div class="inner-text">
-                                    <h4><a href="#">Assitance</a></h4>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="img/TB_Gave_Assistance.jpg" alt="">
+                        <div class="inner-text">
+                            <h4><a href="#">Assitance</a></h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Banner Section End -->
+        </div>
+    </div>
+<!-- Client Section End -->
+
         </div>
     {% endif %}
 

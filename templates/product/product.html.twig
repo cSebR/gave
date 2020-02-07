@@ -96,10 +96,20 @@
                                 </div>
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input id="numberOfBook" type="text" value="1">
                                     </div>
-                                    <a href="{{ path('cart_add', { id: selectedBook.id }) }}" class="primary-btn pd-cart">Ajouter Panier</a>
+                                    <!-- <a onclick="this.href = `${this.href.split('/').pop().join('')}${document.getElementById('numberOfBook').value}`" href="{{ path('cart_add', { id: selectedBook.id, number: 1 }) }}" class="primary-btn pd-cart">Ajouter Panier</a> -->
+                                    <a onclick="updateNumber(this)" href="{{ path('cart_add', { id: selectedBook.id, number: 1 }) }}" class="primary-btn pd-cart">Ajouter Panier</a>
                                 </div>
+                                <script>
+                                    function updateNumber(element) {
+                                        var url = element.href.split('/')
+                                        url.pop()
+                                        url = url.join('/')
+                                        url = url + '/' + document.getElementById('numberOfBook').value
+                                        element.href = url
+                                    }
+                                </script>
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIE</span>: {{ selectedBook.category.label }}</li>
                                     <li><span>TAGS</span>: 

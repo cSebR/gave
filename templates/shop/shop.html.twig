@@ -4,39 +4,41 @@
 
 {% block body %}
 
-   <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="{{ path('main') }}"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
-                    </div>
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="{{ path('main') }}"><i class="fa fa-home"></i> Home</a>
+                    <span>Shop</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Product Shop Section Begin -->
-    <section class="product-shop spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
-                        <ul class="filter-catagories">
-                            {% for categorie in categs %}
-                                <li><a href="{{ path('shop', { id: categorie.id }) }}" name="categ"> {{ categorie.label }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Tags</h4>
-                        <div class="fw-brand-check">
+<!-- Product Shop Section Begin -->
+<section class="product-shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+                <div class="filter-widget">
+                    <h4 class="fw-title">Categories</h4>
+                    <ul class="filter-catagories">
+                        {% for categorie in categs %}
+                        <li><a href="{{ path('shop', { id: categorie.id }) }}" name="categ"> {{ categorie.label }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
-                            {% for tag in dataserve.getTags %}
-                            {# <div class="bc-item">
+                <div class="filter-widget">
+                    <h4 class="fw-title">Tags</h4>
+                    <div class="fw-brand-check">
+
+                        {% for tag in dataserve.getTags %}
+                        {# <div class="bc-item">
                                 <span class="checkmark"></span>
                                 <input type="checkbox" id= "{{ tag.id }}">
 
@@ -45,17 +47,17 @@
                                 </label>
                             </div> #}
 
-                            <div class="bc-item">
-                                <label for="{{ tag.id }}">
-                                    {{ tag.label }}
-                                    <input type="checkbox" id="{{ tag.id }}">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            {% endfor %}
+                        <div class="bc-item">
+                            <label for="{{ tag.id }}">
+                                {{ tag.label }}
+                                <input type="checkbox" id="{{ tag.id }}">
+                                <span class="checkmark"></span>
+                            </label>
                         </div>
+                        {% endfor %}
                     </div>
-                    {# <div class="filter-widget">
+                </div>
+                {# <div class="filter-widget">
                         <h4 class="fw-title">Price</h4>
                         <div class="filter-range-wrap">
                             <div class="range-slider">
@@ -74,7 +76,7 @@
                         <a href="#" class="filter-btn">Filter</a>
                     </div> #}
 
-                    <!--<div class="filter-widget">
+                <!--<div class="filter-widget">
                         <h4 class="fw-title">Tags</h4>
                         <div class="fw-tags">
                             <a href="#">Towel</a>
@@ -86,9 +88,9 @@
                             <a href="#">Backpack</a>
                         </div>
                     </div>-->
-                </div>
-                <div class="col-lg-9 order-1 order-lg-2">
-                    {# <div class="product-show-option">
+            </div>
+            <div class="col-lg-9 order-1 order-lg-2">
+                {# <div class="product-show-option">
                         <div class="row">
                             <div class="col-lg-7 col-md-7">
                                 <div class="select-option">
@@ -105,11 +107,11 @@
                             </div>
                         </div>
                     </div> #}
-                    {# {{ dump(book.author.label) }} #}
-                    {% if categ is empty %}
-                    <div class="product-list">
-                        <div class="row">
-                            <!-- <div class="col-lg-4 col-sm-6">
+                {# {{ dump(book.author.label) }} #}
+                {% if categ is empty %}
+                <div class="product-list">
+                    <div class="row">
+                        <!-- <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <img src="{{ asset('img/products/product-1.jpg') }}" alt="">
@@ -186,38 +188,38 @@
                                 </div>
                             </div> -->
 
-
                             {% for book in books %}
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- {{ dump(book) }} -->
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="{{ book.cover }}" alt="">
-                                            {# <div class="sale pp-sale">Sale</div> #}
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="{{ path('product',{id: book.id }) }}">+ Voir</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
+                            <div class="col-lg-4 col-sm-6">
+
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="{{ book.cover }}" alt="">
+                                        {# <div class="sale pp-sale">Sale</div> #}
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
                                         </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">{{ book.author[0].label }}</div>
-                                            <a href="#">
-                                                <h5>{{ book.title }}</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                {{ book.priceTTC }}€
-                                                {# <span>$35.00</span> #}
-                                            </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="{{ path('product',{id: book.id }) }}">+ Voir</a>
+                                            </li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">{{ book.author[0].label }}</div>
+                                        <a href="#">
+                                            <h5>{{ book.title }}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            {{ book.priceTTC }}€
+                                            {# <span>$35.00</span> #}
                                         </div>
                                     </div>
                                 </div>
-                            {% endfor %}
+                            </div>
+                            {% endfor %}            
 
-                            {% else %}
+                        {% else %}
                             {% for book in categ %}
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
@@ -229,7 +231,8 @@
                                         </div>
                                         <ul>
                                             <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="{{ path('product', {id: book.id  }) }}">+ Quick View</a></li>
+                                            <li class="quick-view"><a href="{{ path('product', {id: book.id  }) }}">+ Quick
+                                                    View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
@@ -248,37 +251,8 @@
                             {% endfor %}
                         {% endif %}
 
-{# 
-    -cover: "https://images.unsplash.com/photo-1496016943515-7d33598c11e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
-    -backCover: null
-    -title: "Titre de mon super livre"
-    -publishedDate: DateTime @1579046400 {#274 ▶}
-    -numberOfCopies: 38658
-    -priceHT: 30.0
-    -priceTTC: 34.0
-    -discountAmount: null
-    -discountType: null
-    -description: null
-    -numberOfPages: 700
-    -ranking: null
-    -ISBN10: "57856785"
-    -ISBN13: "6786587567586"
-    -ASIN: "uiyTIUYTliu"
-    -dimention: null
-    -weight: null
-    -isAvailable: true
-    -author: Doctrine\ORM\PersistentCollection {#130 ▶}
-    -format: Proxies\__CG__\App\Entity\Format {#2112 ▶}
-    -publisher: Proxies\__CG__\App\Entity\Publisher {#4923 ▶}
-    -theme: Doctrine\ORM\PersistentCollection {#301 ▶}
-    -category: Proxies\__CG__\App\Entity\Category {#65 ▶}
-    -commentaries: Doctrine\ORM\PersistentCollection {#4976 ▶}
-    -createdAt: DateTime @1578441600 {#298 ▶} #}
 
-
-
-
-                            <!--<div class="col-lg-4 col-sm-6">
+                        <!--<div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <img src="img/products/product-4.jpg" alt="">
@@ -429,17 +403,17 @@
                                     </div>
                                 </div>
                             </div>-->
-                        </div>
                     </div>
-                    {# <div class="loading-more">
+                </div>
+                {# <div class="loading-more">
                         <i class="icon_loading"></i>
                         <a href="#">
                             Loading More
                         </a>
                     </div> #}
-                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 {% endblock %}

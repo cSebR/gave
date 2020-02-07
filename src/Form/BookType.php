@@ -80,7 +80,6 @@ class BookType extends AbstractType
 	            },
 	            'choice_label' => 'label'
             ])
-            
             ->add('etat',EntityType::class,[
 	            'class' => Etat::class,
 	            'attr' => ['class' => 'select'],
@@ -100,6 +99,7 @@ class BookType extends AbstractType
 	            },
 	            'choice_label' => 'label'
             ])
+
 	        ->add('tags',TagType::class,['attr' => ['class' => 'select']])
         ;
     }

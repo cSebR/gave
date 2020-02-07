@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CreditCard index{% endblock %}
+
+{% block body %}
+    <h1>CreditCard index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Number</th>
+                <th>Name</th>
+                <th>ExpirationMonth</th>
+                <th>ExpirationYear</th>
+                <th>Cvv</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for credit_card in credit_cards %}
+            <tr>
+                <td>{{ credit_card.id }}</td>
+                <td>{{ credit_card.number }}</td>
+                <td>{{ credit_card.name }}</td>
+                <td>{{ credit_card.expirationMonth }}</td>
+                <td>{{ credit_card.expirationYear }}</td>
+                <td>{{ credit_card.cvv }}</td>
+                <td>
+                    <a href="{{ path('credit_card_show', {'id': credit_card.id}) }}">show</a>
+                    <a href="{{ path('credit_card_edit', {'id': credit_card.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('credit_card_new') }}">Create new</a>
+{% endblock %}

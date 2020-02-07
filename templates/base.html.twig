@@ -81,53 +81,47 @@
                             <li class="heart-icon">
                                 <a href="{{ path('wish') }}">
                                     <i class="icon_heart_alt"></i>
-                                    <span>1</span>
+                                    {% if dataserve.getWish is not empty %}<span>{{ dataserve.getWish | length }}</span>{% endif %}
                                 </a>
                             </li>
                             <!-- Panier -->
                             <li class="cart-icon">
-                                <a href="#">
+                                <a href="{{ path('cart') }}">
                                     <i class="icon_cart"></i>
-                                    <span>3</span>
+                                    {% if dataserve.getCart is not empty %}<span>{{ dataserve.getCart | length }}</span>{% endif %}
                                 </a>
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
                                             <tbody>
-                                            <tr>
-                                                <td class="si-pic"><img src="{{ asset('img/select-product-1.jpg') }}" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="si-pic"><img src="{{ asset('img/select-product-2.jpg') }}" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
+
+                                                {% for item in dataserve.getCart %}
+                                                     <tr class="correct-cart-item">
+
+                                                        <td class="si-pic" style="width: 100px;"><img src="{{ item.book.cover }}" alt=""></td>
+                                                        <td class="si-text">
+                                                            <div class="product-selected">
+                                                                <p>{{ item.book.priceTTC }} x {{ item.number }}</p>
+                                                                <h6>{{ item.book.title }}</h6>
+                                                            </div>
+                                                        </td>
+                                                        <td class="si-close">
+                                                            <i class="ti-close"></i>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
+                                    {% set total = dataserve.getCart | reduce((acc, cur) => acc + (cur.book.priceTTC * cur.number)) %}
+
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>$120.00</h5>
+                                        <h5>{{ total }}€</h5>
                                     </div>
                                     <div class="select-button">
-                                        {# <a href="{{ path('cart') }}" class="primary-btn view-card">VIEW CARD</a> #}
-                                        {# <a href="{{ path('checkout') }}" class="primary-btn checkout-btn">CHECK OUT</a> #}
+                                        <a href="{{ path('cart') }}" class="primary-btn view-card">Voir le panier</a>
+                                        <a href="{{ path('checkout') }}" class="primary-btn checkout-btn">Checkout</a>
                                     </div>
                                 </div>
                             </li>

@@ -17,6 +17,10 @@ use App\Entity\Language;
 use App\Repository\LanguageRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,26 +29,23 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cover')
-            ->add('backCover')
-            ->add('title')
-            ->add('publishedDate')
-            ->add('numberOfCopies')
-            ->add('priceHT')
-            ->add('priceTTC')
-            // ->add('discountAmount')
-            // ->add('discountType')
-            ->add('description')
-            ->add('numberOfPages')
-            // ->add('ranking')
-            ->add('ISBN10')
-            ->add('ISBN13')
-            ->add('ASIN')
-            ->add('dimention')
-            ->add('weight')
-            ->add('isAvailable')
-            // ->add('createdAt')
-            ->add('author',AuthorType::class)
+
+            ->add('cover',TextareaType::class,['attr' => ['class' => 'select']])
+            ->add('backCover',TextAreaType::class,['attr' => ['class' => 'select']])
+            ->add('title',TextType::class,['attr' => ['class' => 'select']])
+            ->add('publishedDate',DateTimeType::class,['attr' => ['class' => 'select']])
+            ->add('numberOfCopies',TextType::class,['attr' => ['class' => 'select']])
+            ->add('priceHT',TextType::class,['attr' => ['class' => 'select']])
+            ->add('priceTTC',TextType::class,['attr' => ['class' => 'select']])
+            ->add('description',TextAreaType::class,['attr' => ['class' => 'select']])
+            ->add('numberOfPages',TextType::class,['attr' => ['class' => 'select']])
+            ->add('ISBN10',TextType::class,['attr' => ['class' => 'select']])
+            ->add('ISBN13',TextType::class,['attr' => ['class' => 'select']])
+            ->add('ASIN',TextType::class,['attr' => ['class' => 'select']])
+            ->add('dimention',TextType::class,['attr' => ['class' => 'select']])
+            ->add('weight',TextType::class,['attr' => ['class' => 'select']])
+            ->add('isAvailable',CheckboxType::class,['attr' => ['class' => 'select']])
+            ->add('author',AuthorType::class,['attr' => ['class' => 'select']])
             ->add('category',EntityType::class,[
 	            'class' => Category::class,
 	            'attr' => ['class' => 'select'],
@@ -99,13 +100,7 @@ class BookType extends AbstractType
 	            },
 	            'choice_label' => 'label'
             ])
-            // ->add('category')
-            // ->add('format')
-            // ->add('publisher')
-            // ->add('collection')
-            // ->add('etat')
-            // ->add('language')
-	        ->add('tags',TagType::class)
+	        ->add('tags',TagType::class,['attr' => ['class' => 'select']])
         ;
     }
 

@@ -3,25 +3,21 @@
 namespace App\Form;
 
 use App\Entity\Address;
-use App\Entity\Category;
-use App\Repository\AddressRepository;
-use App\Repository\CategoryRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class AddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ligne1')
-            ->add('ligne2')
-            ->add('ligne3')
-            ->add('PostalCode')
-            ->add('city')
+            ->add('ligne1',TextType::class,['attr' => ['class' => 'select']])
+            ->add('ligne2',TextType::class,['attr' => ['class' => 'select']])
+            ->add('ligne3',TextType::class,['attr' => ['class' => 'select']])
+            ->add('PostalCode',TextType::class,['attr' => ['class' => 'select']])
+            ->add('city',TextType::class,['attr' => ['class' => 'select']])
             //->add('user')
         ;
     }

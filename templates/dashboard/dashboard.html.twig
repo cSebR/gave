@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Compte {# User #} {% endblock %}
+{% block title %} Tableau de Bord {% endblock %}
 
 {% block body %}
 
@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="{{ path('main') }}"><i class="fa fa-home"></i> Home</a>
-                        <a href="{{ path('account') }}">Compte</a>
+                        <a href="{{ path('dashboard') }}">Compte</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                             <div class="single-banner">
                                 {#<img src="{{ asset('img/banner-1.jpg') }}" alt="">#}
                                 <div class="inner-text">
-                                    <h4><a href="{{ path('edit_account') }}">Mon Compte</a></h4>
+                                    <h4><a href="{{ path('user_edit', {id: app.user.id}) }}">Mon Compte</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -125,14 +125,6 @@
                                 </div>
                             </div>
                         </div>
-                        {#<div class="col-lg-4">
-                            <div class="single-banner">
-                                <img src="{{ asset('img/banner-3.jpg') }}" alt="">
-                                <div class="inner-text">
-                                    <h4>Gestion Client</h4>
-                                </div>
-                            </div>
-                        </div>#}
                     </div>
                 </div>
             </div>
@@ -146,9 +138,8 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="single-banner">
-                                {#<img src="{{ asset('img/banner-1.jpg') }}" alt="">#}
                                 <div class="inner-text">
-                                    <h4><a href="{{ path('edit_account') }}">Mon Compte</a></h4>
+                                    <h4><a href="{{ path('user_edit',{id: app.user.id}) }}">Mon Compte</a></h4>
                                 </div>
                             </div>
                         </div>

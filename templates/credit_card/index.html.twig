@@ -3,7 +3,7 @@
 {% block title %}CreditCard index{% endblock %}
 
 {% block body %}
-    <h1>CreditCard index</h1>
+    <h2>Carte de Crédit</h2>
 
     <table class="table">
         <thead>
@@ -27,8 +27,9 @@
                 <td>{{ credit_card.expirationYear }}</td>
                 <td>{{ credit_card.cvv }}</td>
                 <td>
-                    <a href="{{ path('credit_card_show', {'id': credit_card.id}) }}">show</a>
-                    <a href="{{ path('credit_card_edit', {'id': credit_card.id}) }}">edit</a>
+                    <a href="{{ path('credit_card_edit', {'id': credit_card.id}) }}">
+                        <button class="btn btn-warning btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fa fa-edit"></span></button>
+                    </a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +40,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('credit_card_new') }}">Create new</a>
+    <div class="row" >
+        <a href="{{ path('credit_card_new') }}" class="site-btn place-btn">Ajouter une carte de crédit</a>
+    </div>
+
 {% endblock %}

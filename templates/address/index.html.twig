@@ -3,7 +3,7 @@
 {% block title %}Address index{% endblock %}
 
 {% block body %}
-    <h1>Address index</h1>
+    <h2></h2>
 
     <table class="table">
         <thead>
@@ -27,8 +27,10 @@
                 <td>{{ address.PostalCode }}</td>
                 <td>{{ address.city }}</td>
                 <td>
-                    <a href="{{ path('address_show', {'id': address.id}) }}">show</a>
-                    <a href="{{ path('address_edit', {'id': address.id}) }}">edit</a>
+                    <a href="{{ path('address_edit', {'id': address.id}) }}"
+                       ><button class="btn btn-warning btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fa fa-edit"></span></button>
+
+                    </a>
                 </td>
             </tr>
         {% else %}
@@ -38,6 +40,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('address_new') }}">Create new</a>
+    <div class="row">
+        <a href="{{ path('address_new') }}" class="site-btn place-btn">Create new</a>
+    </div>
 {% endblock %}

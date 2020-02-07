@@ -3,13 +3,13 @@
 {% block title %}New Address{% endblock %}
 
 {% block body %}
-    <h1>Create new Address</h1>
-
-    {{ include('address/_form.html.twig') }}
-
-    {{ dump(user) }}
-
-
-
-    <a href="{{ path('address_index') }}">back to list</a>
+    <div class="col-lg-6">
+        <h2>Ajouter une adresse</h2>
+    </div>
+    <div class="col-lg-4">
+        {{ include('address/_form.html.twig') }}
+    </div>
+    <div class="row">
+        <a href="{{ path('address_index') }}" class="site-btn place-btn">back to list</a>
+    </div>
 {% endblock %}

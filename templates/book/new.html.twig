@@ -3,9 +3,14 @@
 {% block title %}New Book{% endblock %}
 
 {% block body %}
-    <h1>Create new Book</h1>
+    <div class="col-lg-6">
+        <h2> Ajouter un Livre </h2>
+    </div>
+    <div class="col-lg-4">
+        {{ include('book/_form.html.twig') }}
+    </div>
+    <div class="row">
+        <a href="{{ path('book_index') }}" class="site-btn place-btn">back to list</a>
+    </div>
 
-    {{ include('book/_form.html.twig') }}
-
-    <a href="{{ path('book_index') }}">back to list</a>
 {% endblock %}

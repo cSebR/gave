@@ -17,16 +17,25 @@ class ShopController extends AbstractController {
 	 */
 	public function index(CategoryRepository $categoryRepository,BookRepository $bookRepository, Request $request){
 
-		//Tous les livres
-		$books = $bookRepository->findAll();
 
-        // Toutes les categories
-        $categories = $categoryRepository->findAll();
+		$categ_id = $request->get('id');
 
-        $categ_id = $request->get('id');
+			// Categorie selectionnée
+			$categorie = $bookRepository->findBy(['category' => $categ_id]);
 
-        // Categorie selectionnée
-        $categorie = $bookRepository->findBy(['category' => $categ_id]);
+			//Tous les livres
+			$books = $bookRepository->findAll();
+
+
+
+
+
+		// Toutes les categories
+		$categories = $categoryRepository->findAll();
+
+
+
+
 
         return $this->render('shop/shop.html.twig',[
             'categs' => $categories,

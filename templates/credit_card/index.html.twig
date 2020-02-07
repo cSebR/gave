@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CreditCard index{% endblock %}
+
+{% block body %}
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="{{ path('main') }}"><i class="fa fa-home"></i> Home</a>
+                        <a href="{{ path('dashboard') }}">Tableau de bord</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+
+<section class="checkout-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Liste des Cartes de crédit </h4>
+                    <div class="table-responsive">
+                        <div class="toolbar">
+                            <a href="{{ path('credit_card_new') }}"><button class="btn btn-success btn-xs"><span class="fa fa-plus-circle"></span>Ajouter Carte de crédit</button></a></td>
+                        </div>
+                        <table id="mytable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Number</th>
+                                    <th>Name</th>
+                                    <th>ExpirationDate</th>
+                                    <th>Cvv</th>
+                                    <th>actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for credit_card in credit_cards %}
+                                <tr>
+                                    <td>{{ credit_card.id }}</td>
+                                    <td>{{ credit_card.number }}</td>
+                                    <td>{{ credit_card.name }}</td>
+                                    <td>{{ credit_card.expirationMonth }} / {{ credit_card.expirationYear }}</td>
+                                    <td>{{ credit_card.cvv }}</td>
+                                    <td>
+                                        <a href="{{ path('credit_card_edit', {'id': credit_card.id}) }}">
+                                            <button class="btn btn-warning btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fa fa-edit"></span></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('#mytable').DataTable();
+        });
+
+        $('#mytable').dataTable( {
+            "searching": false,
+            "lengthChange": false
+        } );
+    </script>
+{% endblock %}

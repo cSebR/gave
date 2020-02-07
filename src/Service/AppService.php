@@ -4,11 +4,16 @@ namespace App\Service;
 
 use App\Entity\Book;
 use App\Entity\Category;
+use App\Entity\Cart;
+use App\Entity\Wish;
 use App\Repository\CategoryRepository;
 use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use App\Repository\TagRepository;
 use App\Repository\AuthorRepository;
+use App\Repository\CartRepository;
+use App\Repository\WishRepository;
+use Symfony\Component\Security\Core\Security;
 
 class AppService
 {
@@ -17,19 +22,28 @@ class AppService
     private $user_repository;
     private $tag_repository;
     private $author_repository;
+    private $cart_repository;
+    private $wish_repository;
+    private $security;
 
     public function __construct(
         CategoryRepository $category_repository,
         BookRepository $book_repository,
         UserRepository $user_repository,
         TagRepository $tag_repository,
-        AuthorRepository $author_repository
+        AuthorRepository $author_repository,
+        CartRepository $cart_repository,
+        WishRepository $wish_repository,
+        Security $security
     ) {
         $this->category_repository = $category_repository;
         $this->book_repository = $book_repository;
         $this->user_repository = $user_repository;
         $this->tag_repository = $tag_repository;
         $this->author_repository = $author_repository;
+        $this->cart_repository = $cart_repository;
+        $this->wish_repository = $wish_repository;
+        $this->security = $security;
     }
 
     public function getCategories()
@@ -68,5 +82,15 @@ class AppService
     public function getAuthors()
     {
 	   return $this->author_repository->findAll();
+    }
+    
+    public function getCart()
+    {
+	   return $this->cart_repository->findBy(['user' => $this->security->getUser()->getId()]);
+    }
+    
+    public function getWish()
+    {
+	   return $this->wish_repository->findBy(['user' => $this->security->getUser()->getId()]);
     }
 }

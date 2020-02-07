@@ -2,19 +2,26 @@
 
 namespace App\Controller;
 
+
+use App\Repository\CartRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Book;
+use App\Entity\Cart;
+use Symfony\Component\Security\Core\Security;
 
 class CartController extends AbstractController {
-
+	
 	/**
-	 * @Route("/cart", name="cart")
+	 * @Route("/cart", name="cart", methods={"GET"})
 	 */
-	public function index() {
-		return $this->render( 'cart/cart.html.twig' );
-	}
+	public function index(CartRepository $cartRepository, Security $security): Response	
+    {
+        return $this->render('cart/cart.html.twig', [
+            'carts' => $cartRepository->findBy(['user' => $security->getUser()->getId()]),
+        ]);
+    }
 
 	/**
 	 * @Route("/checkout", name="checkout")
@@ -23,38 +30,25 @@ class CartController extends AbstractController {
 		return $this->render( 'cart/checkOut.html.twig' );
 	}
 
-	
 	/**
-	 * @Route("/cart_add/{id}", name="cart_add")
+	 * @Route("/cart_add/{id}/number/{number}", name="cart_add")
 	 */
-	public function addItem(Book $book) {
-		// dd($book);
-		$entityManager = $this->getDoctrine()->getManager();
-		// $entityManager->persist($book);
-		// $entityManager->flush();
-
-		// dump($book);
-		dd($entityManager);
-
-		// return $this->redirectToRoute('cart');
+	public function addItem(Book $book, int $number, Security $security) {
+		$user = $security->getUser();
 		
-		// return $this->render( 'cart/cart.html.twig' );
+		if(empty($user)) {
+			return $this->redirectToRoute('login');
+		}
+		
+        $cart = new Cart();
+        $cart = $cart->setUser($user);
+        $cart = $cart->setNumber($number);
+        $cart = $cart->setBook($book);
+
+		$entityManager = $this->getDoctrine()->getManager();
+		$entityManager->persist($cart);
+		$entityManager->flush();
+
+		return $this->redirectToRoute('cart');
 	}
 }
-
-// $book = new Book();
-// $form = $this->createForm(BookType::class, $book);
-// $form->handleRequest($request);
-
-// if ($form->isSubmitted() && $form->isValid()) {
-// 	$entityManager = $this->getDoctrine()->getManager();
-// 	$entityManager->persist($book);
-// 	$entityManager->flush();
-
-// 	return $this->redirectToRoute('book_index');
-// }
-
-// return $this->render('book/new.html.twig', [
-// 	'book' => $book,
-// 	'form' => $form->createView(),
-// ]);

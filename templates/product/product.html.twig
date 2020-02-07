@@ -137,8 +137,12 @@
                                     <a href="{{ path('cart_add', { id: selectedBook.id }) }}" class="primary-btn pd-cart">Ajouter Panier</a>
                                 </div>
                                 <ul class="pd-tags">
-                                    <li><span>CATEGORIE</span>: {# Science-Fiction #} {# {{ selectedBook.category[0].label }}#} </li>
-                                    <li><span>TAGS</span>: SF, Roman, Aventure, Comedie</li>
+                                    <li><span>CATEGORIE</span>: {{ selectedBook.category.label }}</li>
+                                    <li><span>TAGS</span>: 
+                                    {% for tag in selectedBook.tags %}
+                                        {{ tag.label }}{% if not (loop.last) %},{% endif %}
+                                    {% endfor %}
+                                    </li>
                                 </ul>
                                 {# <div class="pd-share">
                                     {<div class="p-code">ISBN 13 : {{ selectedBook.isbn13 }}</div>
@@ -186,7 +190,7 @@
                                         <tr>
                                                 <td class="p-catagory">Date de Parution</td>
                                                 <td>
-                                                    <div class="p-code">{# {{ selectedBook.publishedDate }} #}</div>
+                                                    <div class="p-code">{{ selectedBook.publishedDate|date("m/d/Y") }}</div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -240,7 +244,7 @@
                                             <tr>
                                                 <td class="p-catagory">Collection</td>
                                                 <td>
-                                                    <div class="p-code">{# {{ selectedBook.collection.label }} #}</div>
+                                                    <div class="p-code">{{ selectedBook.collection.label }}</div>
                                                 </td>
                                             </tr>
                                             <tr>

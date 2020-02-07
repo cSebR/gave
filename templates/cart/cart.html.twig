@@ -38,6 +38,26 @@
                         </tr>
                         </thead>
                         <tbody>
+
+                            {% for item in carts %}
+                                <tr>
+                                    <td class="cart-pic first-row"><img src="{{ item.book.cover }}" alt=""></td>
+                                    <td class="cart-title first-row">
+                                        <h5>{{ item.book.title }}</h5>
+                                    </td>
+                                    <td class="p-price first-row">{{ item.book.priceTTC }}€</td>
+                                    <td class="qua-col first-row">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" onchange="updateNumber(this)" value="{{ item.number }}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="total-price first-row">{{ item.book.priceTTC * item.number }}€</td>
+                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                </tr>
+                            {% endfor %}
+<!--                        
                         <tr>
                             <td class="cart-pic first-row"><img src="{{ asset('img/cart-page/product-1.jpg') }}" alt=""></td>
                             <td class="cart-title first-row">
@@ -85,7 +105,7 @@
                             </td>
                             <td class="total-price">$60.00</td>
                             <td class="close-td"><i class="ti-close"></i></td>
-                        </tr>
+                        </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -103,11 +123,14 @@
                             </form>
                         </div>
                     </div>
+
+                    {% set total = carts|reduce((acc, cur) => acc + (cur.book.priceTTC * cur.number)) %}
+
                     <div class="col-lg-4 offset-lg-4">
                         <div class="proceed-checkout">
                             <ul>
-                                <li class="subtotal">Subtotal <span>$240.00</span></li>
-                                <li class="cart-total">Total <span>$240.00</span></li>
+                                <li class="subtotal">Subtotal <span>{{ total }}€</span></li>
+                                <li class="cart-total">Total <span>{{ total }}€</span></li>
                             </ul>
                             <a href="{{ path('checkout') }}" class="proceed-btn">PROCEED TO CHECK OUT</a>
                         </div>

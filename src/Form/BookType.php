@@ -32,18 +32,13 @@ class BookType extends AbstractType
             ->add('numberOfCopies')
             ->add('priceHT')
             ->add('priceTTC')
-            // ->add('discountAmount')
-            // ->add('discountType')
             ->add('description')
             ->add('numberOfPages')
-            // ->add('ranking')
             ->add('ISBN10')
             ->add('ISBN13')
-            ->add('ASIN')
             ->add('dimention')
             ->add('weight')
             ->add('isAvailable')
-            // ->add('createdAt')
             ->add('author',AuthorType::class)
             ->add('category',EntityType::class,[
 	            'class' => Category::class,
@@ -79,7 +74,6 @@ class BookType extends AbstractType
 	            },
 	            'choice_label' => 'label'
             ])
-            
             ->add('etat',EntityType::class,[
 	            'class' => Etat::class,
 	            'attr' => ['class' => 'select'],
@@ -99,12 +93,6 @@ class BookType extends AbstractType
 	            },
 	            'choice_label' => 'label'
             ])
-            // ->add('category')
-            // ->add('format')
-            // ->add('publisher')
-            // ->add('collection')
-            // ->add('etat')
-            // ->add('language')
 	        ->add('tags',TagType::class)
         ;
     }
